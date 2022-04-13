@@ -16,6 +16,38 @@ async function addExamen(examen){
       connection.end();
 }
 
+async function addPregunta(pregunta){
+    
+  let connection = mysql.createConnection(config);
+  connection.query("CALL add_pregunta(?,?,?)" ,
+  [pregunta.pregunta,pregunta.nota,pregunta.id_examen]
+  , (error, results, fields) => {
+      if (error) {
+        return console.error(error.message);
+      }
+      console.log(results[0]);
+    });
+    
+    connection.end();
+}
+
+async function addRespuesta(respuesta){
+    
+  let connection = mysql.createConnection(config);
+  connection.query("CALL add_respuesta(?,?,?)" ,
+  [respuesta.respuesta,respuesta.correcta,respuesta.id_pregunta]
+  , (error, results, fields) => {
+      if (error) {
+        return console.error(error.message);
+      }
+      console.log(results[0]);
+    });
+    
+    connection.end();
+}
 module.exports = {
-    addExamen
+    addExamen,
+    addPregunta,
+    addRespuesta
+    
 }
