@@ -16,6 +16,28 @@ async function addAlumno(alumno){
       connection.end();
 }
 
+async function login(alumno){
+  console.log(alumno)
+  let result ;
+  let connection = mysql.createConnection(config);
+  await connection.query("CALL loginAlumno(?,?)" ,
+  [alumno.carne,alumno.contrasenia]
+  , (error, results, fields) => {
+      if (error) {
+        return console.error(error.message);
+      }
+      console.table(results[0])
+      result = results[0];
+    });
+
+    console.log(result)
+    connection.end();
+    return result;
+    
+    
+}
+
 module.exports = {
-    addAlumno
+    addAlumno,
+    login
 }
