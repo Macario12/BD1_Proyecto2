@@ -14,8 +14,8 @@ class LoginForm extends Component {
             <div>
                 <Grid centered>
                     <Grid.Column style={{ maxWidth: 550, marginTop: 20}}>
-                        <Segment inverted>
-                            <Form inverted>
+                        <Segment>
+                            <Form>
                                 <Form.Field>
                                     <Form.Input name='Usuario' placeholder='Usuario' />
                                 </Form.Field>
