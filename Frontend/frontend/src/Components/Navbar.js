@@ -14,8 +14,8 @@ export default class Navbar extends Component {
           <div className="navbar">
               <Menu pointing secondary>
                 <Menu.Item
-                  name='home'
-                  active={activeItem === 'home'}
+                  name={this.props.first}
+                  active={activeItem === this.props.first}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item

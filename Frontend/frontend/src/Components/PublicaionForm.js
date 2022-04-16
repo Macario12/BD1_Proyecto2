@@ -1,13 +1,12 @@
-import React, { Component } from "react";
 import { Button, Form, Segment, Grid } from 'semantic-ui-react'
 import DatePicker from "react-datepicker";
+import React, { Component } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 class PublicacionForm extends Component {
 
     render(){
-        
         return (
             <div>
                 <Grid centered>
@@ -21,11 +20,12 @@ class PublicacionForm extends Component {
                                     <Form.TextArea name='Descripcion' placeholder='Descripcion' />
                                 </Form.Field>
                                 <Form.Field>
-                                <DatePicker   />                         </Form.Field>
+                                    <DatePicker  name='Fecha' />                         
+                                </Form.Field>
                                 <Form.Field>
                                     <Form.Input name='Materia' placeholder='Materia' />
                                 </Form.Field>
-                                <Button fluid primary type="submit">Crear</Button>
+                                <Button fluid primary type="submit">{this.props.tipo}</Button>
                             </Form>
                         </Segment>
                     </Grid.Column>
