@@ -9,9 +9,12 @@ const estilo = {
     left: '90%' 
 };
 
+const estiloCard = {
+  margin: '5% 21%' 
+};
+
 const PublicacionCard = () => (
-  <Card.Group>
-    <Card>
+    <Card style={estiloCard}>
       <Card.Content>
         <Icon disabled name='world' style={estilo}/>
         <Card.Header>Titulo</Card.Header>
@@ -29,8 +32,7 @@ const PublicacionCard = () => (
           </Button>
         </div>
       </Card.Content>
-    </Card>
-  </Card.Group>
+    </Card> 
 )
 
 export default PublicacionCard

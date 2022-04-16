@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Card} from 'semantic-ui-react';
 
 // Components
 import PublicacionCard from '../Components/PublicacionCard'
@@ -8,14 +9,13 @@ import Navbar from '../Components/Navbar'
 
 export default class Publicacion extends Component {
     render(){
-        const estiloCard = {
+        const estiloCards = {
             position: 'absolute',
-            margin: '5% 0 0 0',
-            width: '100%',
-            height: '50%',
-            left: '37%', 
-            color: 'black',
-            'background-color':'black'
+            width: '500px',
+            top: '30%',
+            left: '30%',
+            'border-radius': '20px',
+            'background-color':'#e0e1e2'
         };
         const estiloAdd= {
             position: 'absolute',
@@ -31,8 +31,10 @@ export default class Publicacion extends Component {
                 <div style={estiloAdd}>
                     <AddPublicacion/>
                 </div>
-                <div style={estiloCard}>
-                    <PublicacionCard/>
+                <div>
+                    <Card.Group style={estiloCards}>
+                        <PublicacionCard/>
+                    </Card.Group>  
                 </div>
             </div>
         )

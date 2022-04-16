@@ -20,7 +20,7 @@ function AddPublicacion() {
     >
       <Modal.Header>Agregar una publicacion</Modal.Header>
       <Modal.Content>
-        <PublicacionForm tipo = "Crear"/>
+        <PublicacionForm tipo = "Publicar"/>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
