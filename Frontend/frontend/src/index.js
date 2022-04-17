@@ -11,6 +11,7 @@ import './index.css';
 import AddActividad from './Actividad/AddActividad';
 import Publicacion from './Publicacion/Publicacion';
 import AddExamen from "./Examen/AddExamen";
+import Alumno from "./Alumno/Alumno";
 import Login from './Login';
 
 
@@ -19,8 +20,9 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="publicacion" element={<Publicacion />} />
-      <Route path="examen" element={<AddExamen />} />
       <Route path="actividad" element={<AddActividad />} />
+      <Route path="examen" element={<AddExamen />} />
+      <Route path="alumno" element={<Alumno />} />
       <Route path="login" element={<Login />} />
     </Routes>
   </BrowserRouter>

@@ -32,6 +32,12 @@ export default class Navbar extends Component {
                   onClick={this.handleItemClick}
                   as={Link} to={this.props.thirdLink}
                 />
+                <Menu.Item
+                  name={this.props.fourth}
+                  active={activeItem === this.props.fourth}
+                  onClick={this.handleItemClick}
+                  as={Link} to={this.props.fourthLink}
+                />
                 <Menu.Menu position='right'>
                   <Menu.Item
                     name='logout'

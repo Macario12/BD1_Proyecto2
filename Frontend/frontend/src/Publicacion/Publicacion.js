@@ -34,6 +34,8 @@ export default class Publicacion extends Component {
                     secondLink="/actividad"
                     third="Examen"
                     thirdLink="/examen"
+                    fourth="Alumno"
+                    fourthLink="/alumno"
                 />
                 <div style={estiloAdd}>
                     <AddPublicacion/>

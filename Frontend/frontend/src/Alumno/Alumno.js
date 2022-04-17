@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-//components
-import ActividadForm from '../Components/ActividadForm'
-import Headerr from '../Components/Header'
-import Navbar from '../Components/Navbar'
+// Components
+import RegistroNotas from "../Materia/RegistroNotas";
+import Headerr from '../Components/Header';
+import Materia from "../Materia/Materia";
+import Navbar from '../Components/Navbar';
+import AddAlumno from "./AddAlumno";
 
-export default class AddActividad extends Component {
+export default class Alumno extends Component {
     render(){
-        const estiloForm = {
-            margin:'3% 0'
-        };
         return(
             <div>
                 <Headerr/>
@@ -23,9 +22,9 @@ export default class AddActividad extends Component {
                     fourth="Alumno"
                     fourthLink="/alumno"
                 />
-                <div style={estiloForm}>
-                    <ActividadForm tipo='Crear Examen'/>
-                </div>
+                <AddAlumno/>
+                <Materia/>
+                <RegistroNotas/>
             </div>
         )
     }

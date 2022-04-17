@@ -20,6 +20,8 @@ export default class AddExamen extends Component {
                     secondLink="/actividad"
                     third="Examen"
                     thirdLink="/examen"
+                    fourth="Alumno"
+                    fourthLink="/alumno"
                 />
                 <div style={estiloForm}>
                     <ExamenForm tipo='Crear Actividad'/>
