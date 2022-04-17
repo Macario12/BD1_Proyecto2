@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Menu } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 import './Navbar.css';
-import { Menu, Header, Icon } from 'semantic-ui-react'
 
 export default class Navbar extends Component {
-    state = { activeItem: 'home' }
+    state = { activeItem: 'actividad' }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -17,16 +18,19 @@ export default class Navbar extends Component {
                   name={this.props.first}
                   active={activeItem === this.props.first}
                   onClick={this.handleItemClick}
+                  as={Link} to={this.props.firstLink}
                 />
                 <Menu.Item
-                  name='messages'
-                  active={activeItem === 'messages'}
+                  name= {this.props.second}
+                  active={activeItem === this.props.second}
                   onClick={this.handleItemClick}
+                  as={Link} to={this.props.secondLink}
                 />
                 <Menu.Item
-                  name='friends'
-                  active={activeItem === 'friends'}
+                  name={this.props.third}
+                  active={activeItem === this.props.third}
                   onClick={this.handleItemClick}
+                  as={Link} to={this.props.thirdLink}
                 />
                 <Menu.Menu position='right'>
                   <Menu.Item

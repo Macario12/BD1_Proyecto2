@@ -27,7 +27,14 @@ export default class Publicacion extends Component {
         return(
             <div>
                 <Headerr/>
-                <Navbar first="Publicaciones"/>
+                <Navbar 
+                    first="Publicaciones"
+                    firstLink="/publicacion" 
+                    second="Actividades"
+                    secondLink="/actividad"
+                    third="Examen"
+                    thirdLink="/examen"
+                />
                 <div style={estiloAdd}>
                     <AddPublicacion/>
                 </div>

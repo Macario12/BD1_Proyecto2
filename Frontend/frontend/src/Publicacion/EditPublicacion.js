@@ -1,4 +1,4 @@
-import PublicacionForm from '../Components/PublicaionForm'
+import PublicacionForm from '../Components/PublicacionForm'
 import { Button,Modal } from 'semantic-ui-react'
 import React from 'react'
 

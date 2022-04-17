@@ -1,20 +1,27 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import 'semantic-ui-css/semantic.min.css';
 import reportWebVitals from './reportWebVitals';
-import App from './App';
+import 'semantic-ui-css/semantic.min.css';
+import ReactDOM from 'react-dom/client';
+import React from 'react';
+import './index.css';
+
+
+
+//Component
+import AddActividad from './Actividad/AddActividad';
+import Publicacion from './Publicacion/Publicacion';
+import AddExamen from "./Examen/AddExamen";
 import Login from './Login';
-import Publicacion from './Publicacion/Publicacion'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="login" element={<Login />} />
       <Route path="publicacion" element={<Publicacion />} />
+      <Route path="examen" element={<AddExamen />} />
+      <Route path="actividad" element={<AddActividad />} />
+      <Route path="login" element={<Login />} />
     </Routes>
   </BrowserRouter>
 );

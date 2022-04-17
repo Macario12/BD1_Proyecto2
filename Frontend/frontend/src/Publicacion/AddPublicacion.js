@@ -1,4 +1,4 @@
-import PublicacionForm from '../Components/PublicaionForm'
+import PublicacionForm from '../Components/PublicacionForm'
 import { Button,Modal } from 'semantic-ui-react'
 import React from 'react'
 
@@ -16,7 +16,7 @@ function AddPublicacion() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button color='gray' style={estiloAdd}>Crear</Button>}
+      trigger={<Button color='gray' style={estiloAdd}>Crear Publicacion</Button>}
     >
       <Modal.Header>Agregar una publicacion</Modal.Header>
       <Modal.Content>
