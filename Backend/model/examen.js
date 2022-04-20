@@ -16,17 +16,15 @@ async function addExamen(examen){
       connection.end();
 }
 
-async function addPregunta(pregunta){
+async function addPregunta(pregunta,callback){
     
   let connection = mysql.createConnection(config);
   connection.query("CALL add_pregunta(?,?,?)" ,
   [pregunta.pregunta,pregunta.nota,pregunta.id_examen]
-  , (error, results, fields) => {
-      if (error) {
-        return console.error(error.message);
-      }
-      console.log(results[0]);
-    });
+  , function(err,result){
+    if(err) throw err;
+    callback(result[0][0])
+ });
     
     connection.end();
 }

@@ -7,9 +7,9 @@ async function addExamen(req, res){
 }
 
 async function addPregunta(req, res){
-    pregunta = await Examen.addPregunta(req.body);
-
-    return res.status(200).send({pregunta})
+    pregunta = await Examen.addPregunta(req.body,(result)=>{
+        return res.status(200).send(result)   
+       });
 }
 
 

@@ -5,11 +5,11 @@ async function add(req, res){
 
     return res.status(200).send({alumno})
 }
-
-async function login(req, res){
-   const  a = await Alumno.login(req.body);
-    console.log("controller",a)
-    return res.status(200).send({a})
+ function login(req, res){
+   Alumno.login(req.body,(result)=>{
+    return res.status(200).send(result)   
+   });
+    
 }
 
 module.exports = {

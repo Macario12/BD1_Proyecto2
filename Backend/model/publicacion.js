@@ -16,6 +16,18 @@ async function addPublicacion(publicacion){
       connection.end();
 }
 
+async function login(alumno,callback){
+  console.log(alumno)
+  let result ;
+  let connection = mysql.createConnection(config);
+ connection.query('CALL loginAlumno(?,?);',[alumno.carne,alumno.contrasenia], function(err,result){
+    if(err) throw err;
+    callback(result[0][0])
+ });
+    
+    
+}
+
 module.exports = {
     addPublicacion
 }

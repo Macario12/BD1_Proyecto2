@@ -1,5 +1,6 @@
 const config = require('../database/connection')
 let mysql = require('mysql');
+const util = require('util');
 
 async function addAlumno(alumno){
     console.log(alumno)
@@ -16,23 +17,14 @@ async function addAlumno(alumno){
       connection.end();
 }
 
-async function login(alumno){
+async function login(alumno,callback){
   console.log(alumno)
   let result ;
   let connection = mysql.createConnection(config);
-  await connection.query("CALL loginAlumno(?,?)" ,
-  [alumno.carne,alumno.contrasenia]
-  , (error, results, fields) => {
-      if (error) {
-        return console.error(error.message);
-      }
-      console.table(results[0])
-      result = results[0];
-    });
-
-    console.log(result)
-    connection.end();
-    return result;
+ connection.query('CALL loginAlumno(?,?);',[alumno.carne,alumno.contrasenia], function(err,result){
+    if(err) throw err;
+    callback(result[0][0])
+ });
     
     
 }
