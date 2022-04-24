@@ -24,7 +24,7 @@ export default class AddActividad extends Component {
                     fourthLink="/alumno"
                 />
                 <div style={estiloForm}>
-                    <ActividadForm tipo='Crear Examen'/>
+                    <ActividadForm tipo='Crear Actividad'/>
                 </div>
             </div>
         )
