@@ -3,15 +3,14 @@ let mysql = require('mysql');
 const util = require('util');
 
 async function addAlumno(alumno){
-    console.log(alumno)
     let connection = mysql.createConnection(config);
     connection.query("CALL add_alumno(?,?,?,?,?,?,?)" ,
-    [alumno.nombre,alumno.apellido,alumno.carne,alumno.telefono,alumno.direccion,alumno.email,alumno.contrasenia]
+    [alumno.Nombre,alumno.Apellido,alumno.Carnet,alumno.Telefono,alumno.Direccion,alumno.Correo,alumno.Contrasena]
     , (error, results, fields) => {
         if (error) {
           return console.error(error.message);
         }
-        console.log(results[0]);
+        return alumno;
       });
       
       connection.end();
@@ -25,11 +24,34 @@ async function login(alumno,callback){
     if(err) throw err;
     callback(result[0][0])
  });
+ 
+}
+var pool  = mysql.createPool(config);
+function cargaMasiva(alumno){
+  console.log(alumno)
+  pool.getConnection(function(err, connection) {
+    connection.query( "CALL add_alumno(?,?,?,?,?,?,?)" ,
+    [alumno.Nombre,alumno.Apellido,alumno.Carnet,alumno.Telefono,alumno.Direccion,alumno.Correo,alumno.Contrasena], function(err, rows) {
+      connection.release();
+    });
+  });
+
+}
+
+async function eliminar(alumno,callback){
+  
+  let connection = mysql.createConnection(config);
+ connection.query('CALL delete_Alumno(?);',[alumno.id], function(err,result){
+    if(err) throw err;
+    callback(result[0][0])
+ });
     
     
 }
 
-module.exports = {
+module.exports = {/**Delete falta */
     addAlumno,
-    login
+    login,
+    cargaMasiva,
+    eliminar
 }

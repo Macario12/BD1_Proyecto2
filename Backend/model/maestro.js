@@ -16,6 +16,18 @@ async function addMasestro(maestro){
       connection.end();
 }
 
+async function login(maestro,callback){
+  console.log(maestro)
+  let connection = mysql.createConnection(config);
+ connection.query('CALL loginMaestro(?,?);',[maestro.carne,maestro.contrasenia], function(err,result){
+    if(err) throw err;
+    callback(result[0][0])
+ });
+    
+    
+}
+
 module.exports = {
-    addMasestro
+    addMasestro,
+    login
 }

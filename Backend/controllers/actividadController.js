@@ -6,6 +6,13 @@ async function add(req, res){
     return res.status(200).send({actividad})
 }
 
-module.exports = {
-    add
+function eliminar(req, res){
+    Actividad.eliminar(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
+module.exports = {/*Falta Eliminar */
+    add,eliminar
 }

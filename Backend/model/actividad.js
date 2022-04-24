@@ -16,6 +16,17 @@ async function addActividad(actividad){
       connection.end();
 }
 
+async function eliminar(actividad,callback){
+  
+  let connection = mysql.createConnection(config);
+ connection.query('CALL delete_Actividad(?);',[actividad.id], function(err,result){
+    if(err) throw err;
+    callback(result[0][0])
+ });
+    
+    
+}
+
 module.exports = {
-    addActividad
+    addActividad,eliminar
 }

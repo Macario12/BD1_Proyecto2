@@ -16,11 +16,21 @@ async function addPublicacion(publicacion){
       connection.end();
 }
 
-async function login(alumno,callback){
-  console.log(alumno)
-  let result ;
+async function actualizar(publicacion,callback){
+  
   let connection = mysql.createConnection(config);
- connection.query('CALL loginAlumno(?,?);',[alumno.carne,alumno.contrasenia], function(err,result){
+ connection.query('CALL update_publicacion(?,?,?,?,?);',[publicacion.id,publicacion.titulo,publicacion.descripcion,publicacion.fecha,publicacion.id_materia], function(err,result){
+    if(err) throw err;
+    callback(publicacion)
+ });
+    
+    
+}
+
+async function eliminar(publicacion,callback){
+  
+  let connection = mysql.createConnection(config);
+ connection.query('CALL delete_publicacion(?);',[publicacion.id], function(err,result){
     if(err) throw err;
     callback(result[0][0])
  });
@@ -28,6 +38,19 @@ async function login(alumno,callback){
     
 }
 
+
+async function obtener(callback){
+  
+  let connection = mysql.createConnection(config);
+ connection.query('CALL publicaciones();', function(err,result){
+    if(err) throw err;
+    callback(result[0][0])
+ });
+    
+    
+}
+
+
 module.exports = {
-    addPublicacion
+    addPublicacion,actualizar,eliminar,obtener
 }

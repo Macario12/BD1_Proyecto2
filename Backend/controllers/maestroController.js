@@ -6,6 +6,14 @@ async function add(req, res){
     return res.status(200).send({maestro})
 }
 
+function login(req, res){
+    Maestro.login(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
 module.exports = {
-    add
+    add,
+    login
 }

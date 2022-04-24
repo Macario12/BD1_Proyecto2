@@ -6,6 +6,28 @@ async function add(req, res){
     return res.status(200).send({publicacion})
 }
 
+function actualizar(req, res){
+    Publicacion.actualizar(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
+ function eliminar(req, res){
+    Publicacion.eliminar(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
+ function obtener(req, res){
+    Publicacion.obtener(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
 module.exports = {
-    add
+    /*C     R       U           D*/
+      add,obtener,actualizar,eliminar
 }
