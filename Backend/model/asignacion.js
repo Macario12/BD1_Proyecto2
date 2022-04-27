@@ -1,9 +1,7 @@
-const config = require('../database/connection')
-let mysql = require('mysql');
+const connection = require('../database/connection')
 
 async function addAsignacion(asignacion){
     
-    let connection = mysql.createConnection(config);
     connection.query("CALL add_asignacion(?,?,?)" ,
     [asignacion.nota,asignacion.id_alumno,asignacion.id_materia]
     , (error, results, fields) => {
@@ -13,7 +11,6 @@ async function addAsignacion(asignacion){
         console.log(results[0]);
       });
       
-      connection.end();
 }
 
 module.exports = {
