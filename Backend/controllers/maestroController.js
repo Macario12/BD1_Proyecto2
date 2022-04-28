@@ -13,7 +13,23 @@ function login(req, res){
      
  }
 
+ async function cargaMasiva(req, res){
+    
+    const csv = require('csvtojson')
+    
+   const converter = csv().fromFile(req.body.ruta).then((json) => {
+        json.forEach(guardar)
+    })
+    return res.status(200).send("Carga Masiva success")
+}
+function guardar(item,index){
+    //console.log(item);
+    
+    alumno = Maestro.cargaMasiva(item);
+}
+
 module.exports = {
     add,
-    login
+    login,
+    cargaMasiva
 }
