@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import {Card} from 'semantic-ui-react';
 
 // Components
-import PublicacionCard from '../Components/PublicacionCard';
+import NotificacionCard from '../Components/NotificacionCard';
 import Headerr from '../Components/Header';
 import Navbar from '../Components/Navbar';
 
-export default class Publicacion extends Component {
+export default class Notificacion extends Component {
     render(){
         const estiloCards = {
             position: 'absolute',
@@ -31,7 +31,7 @@ export default class Publicacion extends Component {
                 />
                 <div>
                     <Card.Group style={estiloCards}>
-                        <PublicacionCard show={false} />
+                        <NotificacionCard/>
                     </Card.Group>  
                 </div>
             </div>

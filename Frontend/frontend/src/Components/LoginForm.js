@@ -20,7 +20,7 @@ class LoginForm extends Component {
                                     <Form.Input name='Usuario' placeholder='Usuario' />
                                 </Form.Field>
                                 <Form.Field>
-                                    <Form.Input name='Contraseña' placeholder='Contraseña' />
+                                    <Form.Input type='password' name='Contraseña' placeholder='Contraseña' />
                                 </Form.Field>
                                 <Form.Field >
                                     <Dropdown

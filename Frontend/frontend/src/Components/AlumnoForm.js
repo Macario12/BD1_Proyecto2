@@ -1,4 +1,4 @@
-import { Button, Form, Segment, Grid, Input } from 'semantic-ui-react'
+import { Button, Form, Segment, Grid} from 'semantic-ui-react'
 import "react-datepicker/dist/react-datepicker.css";
 import React, { Component } from "react";
 
@@ -33,6 +33,9 @@ export default class AlumnoForm extends Component {
                                 </Form.Field>
                                 <Form.Field>
                                     <Form.Input name='email' placeholder='Correo Electronico' />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Form.Input name='Contrasenia' placeholder='Contrasenia' />
                                 </Form.Field>
                                 <Button fluid primary type="submit">{this.props.tipo}</Button>
                             </Form>

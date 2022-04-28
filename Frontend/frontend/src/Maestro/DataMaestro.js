@@ -2,7 +2,7 @@ import { Icon, Menu, Table, Button } from 'semantic-ui-react'
 import React, { Component } from 'react'
 
 //componentes
-import EditMaestro from "./EditarMaestro";
+import EditMaestro from "./EditMaestro";
 
 export default class DataMaestro extends Component {
     render(){
@@ -23,6 +23,7 @@ export default class DataMaestro extends Component {
                         <Table.HeaderCell>Email</Table.HeaderCell>
                         <Table.HeaderCell>Fecha</Table.HeaderCell>
                         <Table.HeaderCell>DPI</Table.HeaderCell>
+                        <Table.HeaderCell>Opciones</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>

@@ -3,11 +3,11 @@ import React, { Component } from "react";
 // Components
 import Headerr from '../Components/Header'
 import Navbar from '../Components/Navbar'
-import DataMaestro from "./DataMaestro";
-import AddMaestro from './AddMaestro';
+import DataAlumno from "./DataAlumno";
+import AddAlumno from './AddAlumno';
 
 
-export default class Maestro extends Component {
+export default class AlumnoCRUD extends Component {
     render(){
         const estiloAdd= {
             position: 'absolute',
@@ -30,10 +30,10 @@ export default class Maestro extends Component {
                     fourthLink="/alumno"
                 />
                 <div style={estiloAdd}>
-                    <AddMaestro/>
+                    <AddAlumno/>
                 </div>
                 <div>
-                    <DataMaestro/>
+                    <DataAlumno/>
                 </div>
             </div>
         )

@@ -13,7 +13,7 @@ function EditMaestro() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button color='gray' >Editar Maestro</Button>}
+      trigger={<Button basic color='blue' >Editar Maestro</Button>}
     >
       <Modal.Header>Editar maestro</Modal.Header>
       <Modal.Content>

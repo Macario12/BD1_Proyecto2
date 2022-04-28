@@ -15,9 +15,9 @@ export default class AddActividad extends Component {
                 <Headerr/>
                 <Navbar 
                     first="Publicaciones"
-                    firstLink="/publicacion" 
+                    firstLink="/publicacioncrud" 
                     second="Actividades"
-                    secondLink="/actividad"
+                    secondLink="/addactividad"
                     third="Examen"
                     thirdLink="/examen"
                     fourth="Alumno"

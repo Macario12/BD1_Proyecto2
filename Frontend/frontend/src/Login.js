@@ -1,6 +1,5 @@
 import './Login.css';
-import { Link } from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 // Components
 import LoginForm from './Components/LoginForm';
 import Header from './Components/Header';

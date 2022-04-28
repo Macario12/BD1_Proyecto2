@@ -4,7 +4,7 @@ import React from 'react'
 //component
 import AlumnoForm from '../Components/AlumnoForm';
 
-function AddAlumno() {
+function EditAlumno() {
   const [open, setOpen] = React.useState(false)
 
 
@@ -13,11 +13,11 @@ function AddAlumno() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button color='gray' >Crear Alumno</Button>}
+      trigger={<Button basic color='blue'>Ediatr Alumno</Button>}
     >
-      <Modal.Header>Agregar una Alumno</Modal.Header>
+      <Modal.Header>Editar una publicacion</Modal.Header>
       <Modal.Content>
-        <AlumnoForm tipo = "Agregar alumno"/>
+        <AlumnoForm tipo = "Editar alumno"/>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
@@ -29,4 +29,4 @@ function AddAlumno() {
 }
 
 
-export default AddAlumno
+export default EditAlumno
