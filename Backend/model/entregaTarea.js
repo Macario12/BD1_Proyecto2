@@ -1,9 +1,7 @@
-const config = require('../database/connection')
-let mysql = require('mysql');
+const connection = require('../database/connection')
 
 async function addEntregaTarea(entrega){
     
-    let connection = mysql.createConnection(config);
     connection.query("CALL add_entrega_tarea(?,?,?,?,?,?,?)" ,
     [entrega.fecha,entrega.archivo,entrega.estado,entrega.puntuacion,entrega.observacion,entrega.id_alumno,entrega.id_actividad]
     , (error, results, fields) => {
@@ -13,7 +11,6 @@ async function addEntregaTarea(entrega){
         console.log(results[0]);
       });
       
-      connection.end();
 }
 
 module.exports = {

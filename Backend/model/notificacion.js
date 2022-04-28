@@ -1,9 +1,6 @@
-const config = require('../database/connection')
-let mysql = require('mysql');
+const connection = require('../database/connection')
 
 async function addNotificacionTarea(notificacion){
-    
-    let connection = mysql.createConnection(config);
     connection.query("CALL add_notificacion_tarea(?,?,?,?)" ,
     [notificacion.nombre,notificacion.descripcion,notificacion.leido,notificacion.id_entrega_tarea]
     , (error, results, fields) => {
@@ -13,12 +10,10 @@ async function addNotificacionTarea(notificacion){
         console.log(results[0]);
       });
       
-      connection.end();
 }
 
 async function addNotificacionExamen(notificacion){
     
-    let connection = mysql.createConnection(config);
     connection.query("CALL add_notificacion_examen(?,?,?,?)" ,
     [notificacion.nombre,notificacion.descripcion,notificacion.leido,notificacion.id_entrega_examen]
     , (error, results, fields) => {
@@ -28,7 +23,6 @@ async function addNotificacionExamen(notificacion){
         console.log(results[0]);
       });
       
-      connection.end();
 }
 
 module.exports = {

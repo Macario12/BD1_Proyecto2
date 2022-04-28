@@ -1,9 +1,7 @@
-const config = require('../database/connection')
-let mysql = require('mysql');
+const connection = require('../database/connection')
 
 async function addMateria(materia){
     
-    let connection = mysql.createConnection(config);
     connection.query("CALL add_materia(?,?)" ,
     [materia.nombre,materia.id_maestro]
     , (error, results, fields) => {
@@ -13,7 +11,6 @@ async function addMateria(materia){
         console.log(results[0]);
       });
       
-      connection.end();
 }
 
 module.exports = {
