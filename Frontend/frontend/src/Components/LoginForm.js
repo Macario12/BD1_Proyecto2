@@ -1,39 +1,62 @@
-import React, { Component } from "react";
-import { Button, Form, Segment, Dropdown, Grid } from 'semantic-ui-react'
+import React, { useState } from "react";
+import { Button, Form, Segment, Grid } from 'semantic-ui-react'
 
-const typeUser = [
-    { key: 'Docente', text: 'Docente', value: 'Docente' },
-    { key: 'Alumno', text: 'Alumno', value: 'Alumno' },
-    { key: 'Administrador', text: 'Administrador', value: 'Administrador' }
-  ]
+export default function LoginForm () {
 
-class LoginForm extends Component {
+    const [dataLogin, setDataLogin] = useState({
+        carne: "",
+        contrasenia: ""
+    })
 
-    render(){
+    const handleInputChange = (e) => {
+        //console.log(e.target.value)
+
+        if(e.target.value === 'Administrador'){
+            console.log('Es administrador')
+        }else if (e.target.value === 'Estudiante'){
+            console.log('Es estudiante')
+        }else if (e.target.value === 'Maestro'){
+            console.log('Es maestro')
+        }
+
+        setDataLogin({
+            ...dataLogin,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const sendData = (e) => {
+        e.preventDefault();
+        console.log(dataLogin.carne + ' ' + dataLogin.contrasenia)
+    }
+
         return (
             <div>
                 <Grid centered>
                     <Grid.Column style={{ maxWidth: 550, marginTop: 20}}>
                         <Segment>
-                            <Form>
+                            <Form onSubmit = {sendData}>
                                 <Form.Field>
-                                    <Form.Input name='Usuario' placeholder='Usuario' />
+                                    <Form.Input 
+                                        name='carne' 
+                                        placeholder='Usuario' 
+                                        onChange={handleInputChange}
+                                    />
                                 </Form.Field>
                                 <Form.Field>
-                                    <Form.Input type='password' name='Contraseña' placeholder='Contraseña' />
+                                    <Form.Input 
+                                        type='password' 
+                                        name='contrasenia' 
+                                        placeholder='Contraseña' 
+                                        onChange={handleInputChange}
+                                    />
                                 </Form.Field>
                                 <Form.Field >
-                                    <Dropdown
-                                        fluid
-                                        button
-                                        className='icon'
-                                        floating
-                                        labeled
-                                        icon='address card'
-                                        options={typeUser}
-                                        search
-                                        text='Tipo de usuario'
-                                    />
+                                    <select onChange={handleInputChange}>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Estudiante">Estudiante</option>
+                                        <option value="Maestro">Maestro</option>
+                                    </select>
                                 </Form.Field>
                                 <Button fluid primary type="submit">Entrar</Button>
                             </Form>
@@ -41,8 +64,5 @@ class LoginForm extends Component {
                     </Grid.Column>
                 </Grid>
             </div>
-        )
-    }
+    )
 }
-
-export default LoginForm;
