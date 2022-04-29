@@ -27,9 +27,15 @@ function guardar(item,index){
     
     alumno = Maestro.cargaMasiva(item);
 }
-
+function eliminar(req, res){
+    Maestro.eliminar(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
 module.exports = {
     add,
     login,
-    cargaMasiva
+    cargaMasiva,
+    eliminar
 }
