@@ -13,6 +13,22 @@ async function addMateria(materia){
       
 }
 
+async function obtenerTodos(callback){
+  connection.query('CALL consultarMateria();', function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+  
+ }
+
+ async function consultarmateriaxmaestro(materia,callback){
+  connection.query('CALL consultarmateriaxmaestro(?);',[materia.id], function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+  
+ }
+ 
 module.exports = {
-    addMateria
+    addMateria,obtenerTodos,consultarmateriaxmaestro
 }

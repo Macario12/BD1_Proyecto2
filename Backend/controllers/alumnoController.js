@@ -36,9 +36,25 @@ function eliminar(req, res){
     });
      
  }
+
+ function obtenerTodos(req, res){
+    Alumno.obtenerTodos((result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
+ function alumnosxmateria(req, res){
+    Alumno.alumnosxmateria(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
 module.exports = {
     add,
     login,
     cargaMasiva,
-    eliminar
+    eliminar,
+    obtenerTodos,
+    alumnosxmateria
 }

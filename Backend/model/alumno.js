@@ -22,6 +22,23 @@ async function login(alumno,callback){
  
 }
 
+async function obtenerTodos(callback){
+ connection.query('CALL consultarAlumnos();', function(err,result){
+    if(err) throw err;
+    callback(result[0])
+ });
+ 
+}
+
+async function alumnosxmateria(alumno,callback){
+  connection.query('CALL consultarAlumnosxMateria(?);',[alumno.id], function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+  
+ }
+ 
+
 function cargaMasiva(alumno){
   //console.log(alumno)
     connection.query("CALL add_alumno(?,?,?,?,?,?,?)" ,
@@ -49,5 +66,6 @@ module.exports = {/**Delete falta */
     addAlumno,
     login,
     cargaMasiva,
-    eliminar
+    eliminar,
+    obtenerTodos,alumnosxmateria
 }

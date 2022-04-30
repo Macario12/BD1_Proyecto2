@@ -13,6 +13,13 @@ function eliminar(req, res){
      
  }
 
+ function obtenerTodos(req, res){
+    Actividad.obtenerTodos((result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
 module.exports = {/*Falta Eliminar */
-    add,eliminar
+    add,eliminar,obtenerTodos
 }

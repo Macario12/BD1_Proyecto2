@@ -19,6 +19,14 @@ async function eliminar(actividad,callback){
     
 }
 
+async function obtenerTodos(callback){
+  connection.query('CALL consultarActividad();', function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+  
+ }
+
 module.exports = {
-    addActividad,eliminar
+    addActividad,eliminar,obtenerTodos
 }

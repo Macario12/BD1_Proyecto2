@@ -168,15 +168,15 @@ DELIMITER ;
 
 CALL add_alumno('Ariel', 'Macario', '201905837', '31003016', 'El por venir', 'arielmacario11@gmail.com', 'katiteamoxd');
 SELECT * FROM alumno;
---PEDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
 DELIMITER $$
-CREATE PROCEDURE add_maestro(IN	nombre VARCHAR(30), IN apellido VARCHAR(30), IN no_registro VARCHAR(20), IN telefono VARCHAR(10), IN direccion VARCHAR(100), IN email VARCHAR(50), IN fecha_nac VARCHAR(50) , IN dpi VARCHAR(20), IN foto_perfil VARCHAR(100), IN contrasenia VARCHAR(20))
+CREATE PROCEDURE add_maestro(IN	nombre VARCHAR(30), IN apellido VARCHAR(30), IN no_registro VARCHAR(20), IN telefono VARCHAR(100), IN direccion VARCHAR(100), IN email VARCHAR(50), IN fecha_nac varchar(50) , IN dpi VARCHAR(20), IN foto_perfil VARCHAR(100), IN contrasenia VARCHAR(20))
 	BEGIN 
 		INSERT INTO maestro (nombre, apellido, no_registro, telefono, direccion, email, fecha_nac , dpi, foto_perfil, contrasenia)
-		VALUES (nombre, apellido, no_registro, telefono, direccion, email, STR_TO_DATE(fecha_nac , '%c/%e/%Y', dpi, foto_perfil, contrasenia);
+		VALUES (nombre, apellido, no_registro, telefono, direccion, email,str_to_date(fecha_nac, '%m/%d/%Y') , dpi, foto_perfil, contrasenia);
 END$$ 
 DELIMITER ;
---PEDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
 DELIMITER $$
 CREATE PROCEDURE add_materia(IN nombre VARCHAR(50), IN id_maestro INT)
 	BEGIN 
