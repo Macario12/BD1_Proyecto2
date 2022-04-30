@@ -22,7 +22,7 @@ CALL loginAlumno('201908321','123');
 DELIMITER $$
 CREATE PROCEDURE loginMaestro(IN registro VARCHAR(50), IN contrasenia varchar(50))
 	BEGIN 
-		Select * from maestro m where m.no_registro = registrono_registro and m.contrasenia = contrasenia;
+		Select * from maestro m where m.no_registro = registro and m.contrasenia = contrasenia;
 END$$ 
 DELIMITER ;
 
