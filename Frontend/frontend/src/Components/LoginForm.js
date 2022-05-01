@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import { Button, Form, Segment, Grid} from 'semantic-ui-react'
+import React, { useState } from "react";
 import { helpHttp } from "../Helper/helpHttp";
+
 
 export default function LoginForm () {
 
@@ -85,9 +86,7 @@ export default function LoginForm () {
                 })
             }
         }
-        
         console.log(dataUser)
-
     }
 
         return (
