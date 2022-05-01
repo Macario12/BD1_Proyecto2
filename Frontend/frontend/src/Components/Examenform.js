@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import React, { Component } from "react";
 
 //component
-import QandA from './QandA'
+import Question from './Question'
 
 export default class ExamenForm extends Component {
 
@@ -27,7 +27,7 @@ export default class ExamenForm extends Component {
                                 <Form.Field>
                                     <Form.Input name='HoraFin' placeholder='Hora Fin' />
                                 </Form.Field>
-                                <QandA />  
+                                <Question />  
                                 <Form.Field>
                                     <Form.Input name='Materia' placeholder='Materia' />
                                 </Form.Field>
@@ -40,5 +40,3 @@ export default class ExamenForm extends Component {
         )
     }
 }
-
-//<DatePicker selected={startdate} onChange={(date) => setStartDate(date)} />

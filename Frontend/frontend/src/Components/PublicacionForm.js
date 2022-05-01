@@ -67,7 +67,6 @@ export default function PublicacionForm (props){
 
     }
 
-
     return (
         <div>
             <Grid centered>

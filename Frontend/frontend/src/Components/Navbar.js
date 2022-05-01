@@ -8,6 +8,10 @@ export default class Navbar extends Component {
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+    eliminarLocalStorage = (data)=> {
+      localStorage.removeItem("User");
+    }
+
     render(){
         const { activeItem } = this.state
 
@@ -42,7 +46,8 @@ export default class Navbar extends Component {
                   <Menu.Item
                     name='logout'
                     active={activeItem === 'logout'}
-                    onClick={this.handleItemClick}
+                    as={Link} to= '/'
+                    onClick={this.eliminarLocalStorage}
                   />
                 </Menu.Menu>
               </Menu>

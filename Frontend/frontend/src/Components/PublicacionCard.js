@@ -1,6 +1,7 @@
 import { Button, Card, Icon } from 'semantic-ui-react'
-import React, { useState} from "react";
 import { helpHttp } from "../Helper/helpHttp";
+import {useNavigate} from "react-router-dom"
+import React, { useState} from "react";
 
 //components
 import EditPublicacion from '../Publicacion/EditPublicacion'
@@ -18,9 +19,11 @@ export default function PublicacionCard (props) {
   let api = helpHttp();
   let urlDelete = "http://localhost:4200/publicacion/delete"
 
-  const [dataPublicacion, setDataPublicacion] = useState({
+  const [dataPublicacion] = useState({
     id:props.publicacion.id_publicacion
   })
+
+  const navigate = useNavigate()
 
   const deletePublicacion = (data)=> {
     data.preventDefault();
@@ -28,6 +31,7 @@ export default function PublicacionCard (props) {
       if(!res.err){
         alert("Se eliminó la publicación")
         console.log(res)
+        navigate('/publicacioncrud');
       }else{
           console.log("ERROR")
       }

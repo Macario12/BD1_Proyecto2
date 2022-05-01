@@ -1,12 +1,40 @@
 import { Button, Form, Segment, Grid } from 'semantic-ui-react'
-import DatePicker from "react-datepicker";
-import React, { Component } from "react";
+import { helpHttp } from "../Helper/helpHttp";
+import React, { useState } from "react";
 
-import "react-datepicker/dist/react-datepicker.css";
 
-class ActividadForm extends Component {
+export default function ActividadForm(props) {
+    const [dataNewActividad, setDataNewActividad] = useState({
+        titulo: "",
+        descripcion: "",
+        fecha_entrega: "",
+        fecha_publicacion: "",
+        punteo: 0,
+        id_materia: 0
+    });
 
-    render(){
+    let api = helpHttp();
+    let urlAdd = "http://localhost:4200/actividad/add"
+
+    const handleInputChange = (e) => {
+        setDataNewActividad({
+            ...dataNewActividad,
+            [e.target.name] : e.target.value
+        })
+    };
+
+    const sendData = (data)=> {
+        console.log(dataNewActividad)
+        api.post(urlAdd, {body:dataNewActividad}).then((res) => {
+            if(!res.err){
+                console.log(res)
+                alert("Se creo la Actividad");
+            }else{
+                console.log("ERROR")
+            }
+        })
+    }
+
         return (
             <div>
                 <Grid centered>
@@ -14,29 +42,59 @@ class ActividadForm extends Component {
                         <Segment>
                             <Form>
                                 <Form.Field>
-                                    <Form.Input name='Titulo' placeholder='Titulo' />
+                                    <Form.Input 
+                                        name='titulo' 
+                                        placeholder='Titulo' 
+                                        onChange={handleInputChange}
+                                    />
                                 </Form.Field>
                                 <Form.Field>
-                                    <Form.TextArea name='Descripcion' placeholder='Descripcion' />
+                                    <Form.TextArea 
+                                        name='descripcion' 
+                                        placeholder='Descripcion' 
+                                        onChange={handleInputChange}
+                                    />
                                 </Form.Field>
                                 <Form.Field>
-                                    <DatePicker  name='FechaEntrega' />                         
+                                    <input 
+                                        type = "date" 
+                                        name ="fecha_entrega" 
+                                        onChange={handleInputChange}
+                                    />                         
                                 </Form.Field>
                                 <Form.Field>
-                                    <DatePicker  name='FechaPublicacion' />                         
+                                    <input 
+                                        type = "date" 
+                                        name ="fecha_publicacion" 
+                                        onChange={handleInputChange}
+                                    />                      
                                 </Form.Field>
                                 <Form.Field>
-                                    <Form.Input name='Materia' placeholder='Materia' />
+                                    <Form.Input 
+                                        name='punteo' 
+                                        placeholder='Punteo' 
+                                        onChange={handleInputChange}
+                                    />
                                 </Form.Field>
-                                <Button fluid primary type="submit">{this.props.tipo}</Button>
+                                <Form.Field>
+                                    <select
+                                        name = "id_materia" 
+                                        onChange={handleInputChange}
+                                    >    
+                                        {props.materias.map(e => 
+                                            <option key={parseInt(e.id_materia, 10)} value={parseInt(e.id_materia, 10)}>
+                                                {e.nombre}
+                                            </option>
+                                        )}
+                                    </select>  
+                                </Form.Field>
+                                <Button onClick={sendData} fluid primary type="submit">{props.tipo}</Button>
                             </Form>
                         </Segment>
                     </Grid.Column>
                 </Grid>
             </div>
         )
-    }
 }
 
-export default ActividadForm;
 //<DatePicker selected={startdate} onChange={(date) => setStartDate(date)} />
