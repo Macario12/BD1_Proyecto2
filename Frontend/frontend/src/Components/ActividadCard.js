@@ -31,11 +31,13 @@ export default class ActividadCard extends Component {
             Fecha: {this.props.actividad.fechaPublicacion}
           </Card.Meta>
         </Card.Content>
+        {this.props.show ?
         <Card.Content extra>
         <div className='ui two buttons' >
-          <EntregaActividad/>
+          <EntregaActividad/> 
         </div>
         </Card.Content>
+        :null}
       </Card>
     )
   }

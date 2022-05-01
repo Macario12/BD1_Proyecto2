@@ -6,4 +6,5 @@ api.post('/delete', controlador.eliminar);
 api.get('/obtenerTodos', controlador.obtenerTodos);
 api.post('/obtenerxAlumno', controlador.obtenerxAlumno);
 api.post('/obtenerxMaestro', controlador.obtenerxMaestro);
+api.post('/obtenerEntregaxAlumno', controlador.obtenerEntregaxAlumno);
 module.exports = api;
