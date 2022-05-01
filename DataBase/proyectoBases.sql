@@ -50,6 +50,9 @@ CREATE TABLE examen (
     FOREIGN KEY (id_materia) REFERENCES materia(id_materia)
 );
 
+ALTER TABLE examen MODIFY COLUMN hora_inicio VARCHAR(10);
+ALTER TABLE examen MODIFY COLUMN hora_fin VARCHAR(10);
+
 CREATE TABLE pregunta (
 	id_pregunta INT AUTO_INCREMENT NOT NULL,
     pregunta VARCHAR(100) NOT NULL,

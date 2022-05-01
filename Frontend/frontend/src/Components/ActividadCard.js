@@ -1,5 +1,6 @@
-import { Card, Icon } from 'semantic-ui-react'
-import React, { Component } from "react";
+import { Card, Icon, Button } from 'semantic-ui-react'
+import { helpHttp } from "../Helper/helpHttp";
+import React, { useState} from "react";
 
 //components
 import EntregaActividad from './EntregaActividad';
@@ -13,32 +14,50 @@ const estiloCard = {
   margin: '5% 21%'
 };
 
-export default class ActividadCard extends Component {
+export default function ActividadCard(props) {
+    let api = helpHttp();
+    let urlDelete = "http://localhost:4200/actividad/delete"
 
-  render() {
+    const [dataActividad] = useState({
+      id:props.actividad.id_actividad
+    })
+
+    const deletePublicacion = (data)=> {
+      data.preventDefault();
+      api.post(urlDelete, {body:dataActividad}).then((res) => {
+        if(!res.err){
+          alert("Se eliminó la actividad")
+          console.log(res)
+        }else{
+            console.log("ERROR")
+        }
+      })
+    }
+
     return (
       <Card style={estiloCard}>
         <Card.Content>
           <Icon disabled name='world' style={estilo} />
-          <Card.Header>{this.props.actividad.titulo}</Card.Header>
-          <Card.Description>Entrega: {this.props.actividad.fechaEntrega}</Card.Description>
-          <Card.Description>Materia: {this.props.actividad.nombre}</Card.Description>
-          <Card.Description>Estado: {this.props.actividad.Entregado < 1 ? "No Entregado": "Entregado"}</Card.Description>
+          <Card.Header>{props.actividad.titulo}</Card.Header>
+          <Card.Description>Entrega: {props.actividad.fecha_entrega}</Card.Description>
+          <Card.Description>Materia: {props.actividad.nombre}</Card.Description>
+          <Card.Description>Estado: {props.actividad.Entregado < 1 ? "No Entregado": "Entregado"}</Card.Description>
           <Card.Meta>
-          {this.props.actividad.descripcion}
+          {props.actividad.descripcion}
           </Card.Meta>
           <Card.Meta>
-            Fecha: {this.props.actividad.fechaPublicacion}
+            Fecha: {props.actividad.fecha_publicacion}
           </Card.Meta>
         </Card.Content>
-        {this.props.show ?
         <Card.Content extra>
-        <div className='ui two buttons' >
-          <EntregaActividad/> 
-        </div>
+          <div className='ui two buttons'> 
+            {props.show
+            ?<EntregaActividad/> 
+            :<Button basic color='red' onClick={deletePublicacion}>
+              Eliminar
+            </Button>}
+          </div>
         </Card.Content>
-        :null}
       </Card>
     )
-  }
 }
