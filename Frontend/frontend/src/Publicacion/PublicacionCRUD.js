@@ -14,8 +14,8 @@ export default function PublicacionCRUD () {
             width: '500px',
             top: '30%',
             left: '30%',
-            'border-radius': '20px',
-            'background-color':'#e0e1e2'
+            'borderRadius': '20px',
+            'backgroundColor':'#e0e1e2'
         };
         const estiloAdd= {
             position: 'absolute',

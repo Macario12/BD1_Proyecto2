@@ -8,12 +8,32 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function PublicacionForm (props){
     let api = helpHttp();
     let urlAdd = "http://localhost:4200/publicacion/add"
-    let existUser = false
 
-    const [dataLogin, setDataLogin] = useState({
-        carne: "",
-        contrasenia: ""
+    /** <select>
+                                    {props.materias.map(e => <option value="Administrador">{e.nombre}</option>)}
+                                </select>*/
+
+    const [dataNewPublicacion, setDataNewPublicacion] = useState({
+        titulo: "",
+        descripcion: "",
+        fecha: "",
+        id_materia: 0
     });
+
+    const [startDate, setStartDate] = useState(new Date());
+
+    const handleInputChange = (e) => {
+        console.log(e.target.value)
+        setDataNewPublicacion({
+            ...dataNewPublicacion,
+            [e.target.name] : e.target.value
+        })
+    };
+
+    const sendData = (data)=> {
+        console.log(dataNewPublicacion)
+    }
+
 
     return (
         <div>
@@ -22,18 +42,38 @@ export default function PublicacionForm (props){
                     <Segment>
                         <Form>
                             <Form.Field>
-                                <Form.Input name='Titulo' placeholder='Titulo' />
+                                <Form.Input 
+                                    name='titulo' 
+                                    placeholder='Titulo' 
+                                    onChange={handleInputChange}
+                                />
                             </Form.Field>
                             <Form.Field>
-                                <Form.TextArea name='Descripcion' placeholder='Descripcion' />
+                                <Form.TextArea 
+                                    name='descripcion' 
+                                    placeholder='Descripcion' 
+                                    onChange={handleInputChange}/>
                             </Form.Field>
                             <Form.Field>
-                                <DatePicker  name='Fecha' />                         
+                                <DatePicker  
+                                    name='fecha' 
+                                    selected={startDate} 
+                                    onChange={(date:Date) => setStartDate(date)}
+                                    onChange={handleInputChange}
+                                />                         
                             </Form.Field>
                             <Form.Field>
-                                <Form.Input name='Materia' placeholder='Materia' />
+                                <select
+                                    name = "id_materia"
+                                    onChange={handleInputChange}>
+                                    {props.materias.map(e => 
+                                        <option key={parseInt(e.id_materia, 10)} value={parseInt(e.id_materia, 10)}>
+                                            {e.nombre}
+                                        </option>
+                                    )}
+                                </select>  
                             </Form.Field>
-                            <Button fluid primary type="submit">{props.tipo}</Button>
+                            <Button fluid primary type="submit" onClick={sendData}>{props.tipo}</Button>
                         </Form>
                     </Segment>
                 </Grid.Column>
