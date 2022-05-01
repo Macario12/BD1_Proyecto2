@@ -17,7 +17,7 @@ function AddPublicacion() {
 
   const saved = localStorage.getItem("User");
   const initial = JSON.parse(saved);
-  console.log(initial)
+
   const [dataMateria, setDataMateria] = useState([]);
   const [dataUser, setDataUser] = useState({
     id:initial.id_maestro
@@ -42,7 +42,7 @@ function AddPublicacion() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button onClick={findMateria}  style={estiloAdd}>Crear Publicacion</Button>}
+      trigger={<Button onClick={findMateria} style={estiloAdd}>Crear Publicacion</Button>}
     >
       <Modal.Header>Agregar una publicacion</Modal.Header>
       <Modal.Content>

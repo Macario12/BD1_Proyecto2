@@ -1,5 +1,6 @@
 import { Button, Card, Icon } from 'semantic-ui-react'
-import React, { Component } from "react";
+import React, { useState} from "react";
+import { helpHttp } from "../Helper/helpHttp";
 
 //components
 import EditPublicacion from '../Publicacion/EditPublicacion'
@@ -13,25 +14,43 @@ const estiloCard = {
   margin: '5% 21%'
 };
 
-export default class PublicacionCard extends Component {
+export default function PublicacionCard (props) {
+  let api = helpHttp();
+  let urlDelete = "http://localhost:4200/publicacion/delete"
 
-  render() {
+  const [dataPublicacion, setDataPublicacion] = useState({
+    id:props.publicacion.id_publicacion
+  })
+
+  const deletePublicacion = (data)=> {
+    data.preventDefault();
+    api.post(urlDelete, {body:dataPublicacion}).then((res) => {
+      if(!res.err){
+        alert("Se eliminó la publicación")
+        console.log(res)
+      }else{
+          console.log("ERROR")
+      }
+  })
+  }
+    
+
     return (
       <Card style={estiloCard}>
         <Card.Content>
           <Icon disabled name='world' style={estilo} />
-          <Card.Header>Titulo</Card.Header>
-          <Card.Meta>Fecha</Card.Meta>
-          <Card.Meta>Materia</Card.Meta>
+          <Card.Header>{props.publicacion.titulo}</Card.Header>
+          <Card.Meta>{props.publicacion.fecha}</Card.Meta>
+          <Card.Meta>{props.publicacion.nombre}</Card.Meta>
           <Card.Description>
-            Descripcion
+            {props.publicacion.descripcion}
           </Card.Description>
         </Card.Content>
-      {this.props.show ? 
+      {props.show ? 
         <Card.Content extra>
-          <div className='ui two buttons' >
-            <EditPublicacion />
-            <Button basic color='red'>
+          <div className='ui two buttons'>
+            <EditPublicacion publicacion = {props.publicacion}/>
+            <Button basic color='red' onClick={deletePublicacion}>
               Eliminar
             </Button>
           </div>
@@ -39,5 +58,4 @@ export default class PublicacionCard extends Component {
         :null}
       </Card>
     )
-  }
 }

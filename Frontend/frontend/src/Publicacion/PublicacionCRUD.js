@@ -1,5 +1,5 @@
 import { helpHttp } from "../Helper/helpHttp";
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import {Card} from 'semantic-ui-react';
 
 // Components
@@ -25,8 +25,28 @@ export default function PublicacionCRUD () {
             left: '90%', 
         };
 
+        let urlgetPublicaciones = "http://127.0.0.1:4200/publicacion/obtenerxMaestro"
+        const saved = localStorage.getItem("User");
+        const initial = JSON.parse(saved);
         let api = helpHttp();
-        let urlEstudiante = "http://localhost:4200/publicacion"
+
+        
+        const [dataUser, setDataUser] = useState(initial)
+        const [idUser, setIdUser] = useState({
+            id: initial.id_maestro
+        })
+        const [publicaciones, setPublicaciones] = useState([])
+
+        useEffect(() => {
+            api.post(urlgetPublicaciones, {body:idUser}).then((res) => {
+                if(!res.err){
+                    setPublicaciones(res)
+                    console.log(res)
+                }else{
+                    console.log("ERROR")
+                }
+            })
+        }, [])
 
         return(
             <div>
@@ -46,8 +66,11 @@ export default function PublicacionCRUD () {
                 </div>
                 <div>
                     <Card.Group style={estiloCards}>
-                        <PublicacionCard show={true}/>
-                    </Card.Group>  
+                        {publicaciones? 
+                            publicaciones.map(e => 
+                                <PublicacionCard key={e.id_publicacion} show={true} publicacion={e}/>)
+                        :null} 
+                    </Card.Group>
                 </div>
             </div>
         )

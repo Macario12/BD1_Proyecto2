@@ -1,14 +1,13 @@
 import { Button, Form, Segment, Grid} from 'semantic-ui-react'
-import React, { useState } from "react";
 import { helpHttp } from "../Helper/helpHttp";
-import PublicacionCRUD from "../Publicacion/PublicacionCRUD"
 import {useNavigate} from "react-router-dom"
+import React, { useState } from "react";
 
 export default function LoginForm () {
-    const navigate = useNavigate()
-    let api = helpHttp();
     let urlEstudiante = "http://localhost:4200/alumno/login"
     let urlMaestro = "http://localhost:4200/maestro/login"
+    const navigate = useNavigate()
+    let api = helpHttp();
     let existUser = false
 
 
@@ -91,7 +90,7 @@ export default function LoginForm () {
         }
         console.log(dataUser)
         
-        navigate('/publicacion');
+        navigate('/publicacioncrud');
     }
 
         return (
