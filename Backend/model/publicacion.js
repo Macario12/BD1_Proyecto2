@@ -28,7 +28,7 @@ async function eliminar(publicacion,callback){
   
  connection.query('CALL delete_publicacion(?);',[publicacion.id], function(err,result){
     if(err) throw err;
-    callback(true)
+    callback("Se elimino")
  });
     
     
