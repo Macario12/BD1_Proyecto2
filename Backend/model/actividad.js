@@ -1,7 +1,7 @@
 const connection = require('../database/connection')
 
 async function addActividad(actividad){
-    connection.query("CALL add_actividad(?,?,?,?,?)" ,
+    connection.query("CALL add_actividad(?,?,?,?,?);" ,
     [actividad.titulo,actividad.descripcion,actividad.fecha_entrega,actividad.punteo,actividad.id_materia]
     , (error, results, fields) => {
         if (error) {
