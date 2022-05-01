@@ -186,10 +186,10 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE add_publicacion(IN titulo VARCHAR(50), IN descripcion VARCHAR(100), IN fecha DATE, IN id_materia INT)
+CREATE PROCEDURE add_publicacion(IN titulo VARCHAR(50), IN descripcion VARCHAR(100), IN fecha varchar(50), IN id_materia INT)
 	BEGIN 
 		INSERT INTO publicacion (titulo, descripcion, fecha, id_materia)
-		VALUES (titulo, descripcion, fecha, id_materia);
+		VALUES (titulo, descripcion, str_to_date(fecha, '%m/%d/%Y'), id_materia);
 END$$ 
 DELIMITER ;
 

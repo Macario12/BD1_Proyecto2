@@ -39,13 +39,23 @@ async function obtener(callback){
   
  connection.query('CALL publicaciones();', function(err,result){
     if(err) throw err;
-    callback(result[0][0])
+    callback(result[0])
  });
     
     
 }
 
+async function obtenerxMaestro(publicacion,callback){
+  
+   connection.query('CALL consultaPublicacionxMaestro(?);',[publicacion.id], function(err,result){
+      if(err) throw err;
+      callback(result[0])
+   });
+      
+      
+  }
+
 
 module.exports = {
-    addPublicacion,actualizar,eliminar,obtener
+    addPublicacion,actualizar,eliminar,obtener,obtenerxMaestro
 }

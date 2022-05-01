@@ -21,13 +21,20 @@ function actualizar(req, res){
  }
 
  function obtener(req, res){
-    Publicacion.obtener(req.body,(result)=>{
+    Publicacion.obtener((result)=>{
      return res.status(200).send(result)   
     });
      
  }
 
+ function obtenerxMaestro(req, res){
+   Publicacion.obtenerxMaestro(req.body,(result)=>{
+    return res.status(200).send(result)   
+   });
+    
+}
+
 module.exports = {
     /*C     R       U           D*/
-      add,obtener,actualizar,eliminar
+      add,obtener,actualizar,eliminar,obtenerxMaestro
 }
