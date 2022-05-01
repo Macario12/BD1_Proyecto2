@@ -1,3 +1,4 @@
+import { helpHttp } from "../Helper/helpHttp";
 import React, { Component } from "react";
 import {Card} from 'semantic-ui-react';
 
@@ -7,8 +8,7 @@ import AddPublicacion from './AddPublicacion';
 import Headerr from '../Components/Header'
 import Navbar from '../Components/Navbar'
 
-export default class PublicacionCRUD extends Component {
-    render(){
+export default function PublicacionCRUD () {
         const estiloCards = {
             position: 'absolute',
             width: '500px',
@@ -24,6 +24,10 @@ export default class PublicacionCRUD extends Component {
             height: '30%',
             left: '90%', 
         };
+
+        let api = helpHttp();
+        let urlEstudiante = "http://localhost:4200/publicacion"
+
         return(
             <div>
                 <Headerr/>
@@ -47,5 +51,4 @@ export default class PublicacionCRUD extends Component {
                 </div>
             </div>
         )
-    }
 }
