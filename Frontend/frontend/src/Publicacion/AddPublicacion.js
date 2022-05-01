@@ -15,9 +15,12 @@ function AddPublicacion() {
   let api = helpHttp();
   let urlFindMateria = "http://localhost:4200/materia/consultarmateriaxmaestro"
 
+  const saved = localStorage.getItem("User");
+  const initial = JSON.parse(saved);
+  console.log(initial)
   const [dataMateria, setDataMateria] = useState([]);
   const [dataUser, setDataUser] = useState({
-    id: 2
+    id:initial.id_maestro
   })
   const [open, setOpen] = useState(false)
 

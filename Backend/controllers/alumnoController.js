@@ -50,11 +50,19 @@ function eliminar(req, res){
     });
      
  }
+
+ function actualizar(req, res){
+    Alumno.actualizar(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
 module.exports = {
     add,
     login,
     cargaMasiva,
     eliminar,
     obtenerTodos,
-    alumnosxmateria
+    alumnosxmateria,
+    actualizar
 }

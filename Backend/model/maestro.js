@@ -33,6 +33,16 @@ async function login(maestro,callback){
     
 }
 
+async function actualizar(maestro,callback){
+  
+  connection.query('CALL update_Maestro(?,?,?,?,?,?,?,?,?,?,?);',[maestro.id,maestro.nombre,maestro.apellido,maestro.no_registro,maestro.telefono,maestro.direccion,maestro.email,maestro.fecha_nac,maestro.dip,maestro.foto,maestro.contrasenia], function(err,result){
+     if(err) throw err;
+     callback(maestro)
+  });
+     
+     
+ }
+
 async function eliminar(maestro,callback){
   
   connection.query('CALL delete_Maestro(?);',[maestro.id], function(err,result){
@@ -47,5 +57,6 @@ module.exports = {
     addMasestro,
     login,
     cargaMasiva,
-    eliminar
+    eliminar,
+    actualizar
 }

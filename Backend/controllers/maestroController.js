@@ -33,9 +33,17 @@ function eliminar(req, res){
     });
      
  }
+
+ function actualizar(req, res){
+    Maestro.actualizar(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
 module.exports = {
     add,
     login,
     cargaMasiva,
-    eliminar
+    eliminar,
+    actualizar
 }

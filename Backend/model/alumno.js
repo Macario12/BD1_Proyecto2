@@ -62,10 +62,20 @@ async function eliminar(alumno,callback){
     
 }
 
+async function actualizar(alumno,callback){
+  
+  connection.query('CALL update_Alumno(?,?,?,?,?,?,?,?);',[alumno.id,alumno.carne,alumno.nombre,alumno.apellido,alumno.telefono,alumno.direccion,alumno.email,alumno.contrasenia], function(err,result){
+     if(err) throw err;
+     callback(alumno)
+  });
+     
+     
+ }
+
 module.exports = {/**Delete falta */
     addAlumno,
     login,
     cargaMasiva,
     eliminar,
-    obtenerTodos,alumnosxmateria
+    obtenerTodos,alumnosxmateria,actualizar
 }

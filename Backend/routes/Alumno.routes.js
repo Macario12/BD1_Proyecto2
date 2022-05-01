@@ -7,4 +7,5 @@ api.post('/cargaMasiva', controlador.cargaMasiva);
 api.post('/delete', controlador.eliminar);
 api.get('/obtenerTodos', controlador.obtenerTodos);
 api.post('/alumnosxmateria', controlador.alumnosxmateria);
+api.put('/update', controlador.actualizar);
 module.exports = api;
