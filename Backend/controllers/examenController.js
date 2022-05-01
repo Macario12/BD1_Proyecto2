@@ -19,9 +19,15 @@ async function addRespuesta(req, res){
     return res.status(200).send({respuesta})
 }
 
-
+function obtenerxMaestro(req, res){
+    Examen.obtenerxMaestro(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
 module.exports = {
     addExamen,
     addPregunta,
-    addRespuesta
+    addRespuesta,
+    obtenerxMaestro
 }

@@ -20,15 +20,15 @@ export default class ActividadCard extends Component {
       <Card style={estiloCard}>
         <Card.Content>
           <Icon disabled name='world' style={estilo} />
-          <Card.Header>Tarea#</Card.Header>
-          <Card.Description>Entrega: Fecha</Card.Description>
-          <Card.Description>Materia: nombreMateria</Card.Description>
-          <Card.Description>Estado: Entregado/NoEntregado</Card.Description>
+          <Card.Header>{this.props.actividad.titulo}</Card.Header>
+          <Card.Description>Entrega: {this.props.actividad.fechaEntrega}</Card.Description>
+          <Card.Description>Materia: {this.props.actividad.nombre}</Card.Description>
+          <Card.Description>Estado: {this.props.actividad.Entregado < 1 ? "No Entregado": "Entregado"}</Card.Description>
           <Card.Meta>
-            Descripcion
+          {this.props.actividad.descripcion}
           </Card.Meta>
           <Card.Meta>
-            Fecha: Publicacion
+            Fecha: {this.props.actividad.fechaPublicacion}
           </Card.Meta>
         </Card.Content>
         <Card.Content extra>

@@ -6,4 +6,5 @@ api.put('/update', controlador.actualizar);
 api.post('/delete', controlador.eliminar);
 api.get('/get', controlador.obtener);
 api.post('/obtenerxMaestro', controlador.obtenerxMaestro);
+api.post('/obtenerxAlumno', controlador.obtenerxAlumno);
 module.exports = api;

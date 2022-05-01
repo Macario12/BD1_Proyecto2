@@ -20,6 +20,19 @@ function eliminar(req, res){
      
  }
 
+ function obtenerxAlumno(req, res){
+    Actividad.obtenerxAlumno(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+ 
+ function obtenerxMaestro(req, res){
+    Actividad.obtenerxMaestro(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
 module.exports = {/*Falta Eliminar */
-    add,eliminar,obtenerTodos
+    add,eliminar,obtenerTodos,obtenerxAlumno,obtenerxMaestro
 }

@@ -42,9 +42,19 @@ async function addRespuesta(respuesta){
     
     
 }
+
+async function obtenerxMaestro(publicacion,callback){
+  
+  connection.query('CALL consultaExamenxMaestro(?);',[publicacion.id], function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+     
+ }
 module.exports = {
     addExamen,
     addPregunta,
-    addRespuesta
+    addRespuesta,
+    obtenerxMaestro
     
 }

@@ -52,10 +52,18 @@ async function obtenerxMaestro(publicacion,callback){
       callback(result[0])
    });
       
+  }
+
+  async function obtenerxAlumno(publicacion,callback){
+  
+   connection.query('CALL consultarPublicacionxAlumno(?);',[publicacion.id], function(err,result){
+      if(err) throw err;
+      callback(result[0])
+   });
       
   }
 
 
 module.exports = {
-    addPublicacion,actualizar,eliminar,obtener,obtenerxMaestro
+    addPublicacion,actualizar,eliminar,obtener,obtenerxMaestro,obtenerxAlumno
 }

@@ -6,6 +6,9 @@ import './Navbar.css';
 export default class Navbar extends Component {
     state = { activeItem: 'actividad' }
 
+    saved = localStorage.getItem("User");
+    initial = JSON.parse(this.saved);
+
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     eliminarLocalStorage = (data)=> {
@@ -44,7 +47,7 @@ export default class Navbar extends Component {
                 />
                 <Menu.Menu position='right'>
                   <Menu.Item
-                    name='logout'
+                    name={'logout '+ this.initial.nombre+ " " + this.initial.apellido}
                     active={activeItem === 'logout'}
                     as={Link} to= '/'
                     onClick={this.eliminarLocalStorage}

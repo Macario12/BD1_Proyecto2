@@ -2,7 +2,7 @@ const connection = require('../database/connection')
 
 async function addActividad(actividad){
     connection.query("CALL add_actividad(?,?,?,?,?,?)" ,
-    [actividad.titulo,actividad.descripcion,actividad.fecha_entrega,actividad.fecha_publicacion,actividad.punteo,actividad.id_materia]
+    [actividad.titulo,actividad.descripcion,actividad.fecha_entrega,actividad.punteo,actividad.id_materia]
     , (error, results, fields) => {
         if (error) {
           return console.error(error.message);
@@ -27,6 +27,24 @@ async function obtenerTodos(callback){
   
  }
 
+ async function obtenerxAlumno(publicacion,callback){
+  
+  connection.query('CALL consultaActividadxAlumno(?);',[publicacion.id], function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+     
+ }
+
+ async function obtenerxMaestro(publicacion,callback){
+  
+   connection.query('CALL consultaActivididadxMaestro(?);',[publicacion.id], function(err,result){
+      if(err) throw err;
+      callback(result[0])
+   });
+      
+  }
+
 module.exports = {
-    addActividad,eliminar,obtenerTodos
+    addActividad,eliminar,obtenerTodos,obtenerxAlumno,obtenerxMaestro
 }

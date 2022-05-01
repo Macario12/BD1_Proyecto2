@@ -62,6 +62,8 @@ export default function LoginForm () {
                     console.log("ERROR")
                 }
             })
+
+            navigate('/publicacion');
         }else if (tipo === "maestro"){
             api.post(urlMaestro, {body:dataLogin}).then((res) => {
                 if(!res.err){
@@ -79,6 +81,8 @@ export default function LoginForm () {
                     console.log("ERROR")
                 }
             })
+
+            navigate('/publicacioncrud');
         }else{
             console.log("ES ADMIN HOLA")
             if(dataLogin.carne === "admin" && dataLogin.contrasenia === "admin"){
@@ -86,11 +90,17 @@ export default function LoginForm () {
                     carne: "admin",
                     contrasenia: "admin"
                 })
+                localStorage.setItem("User", JSON.stringify({
+                    id_maestro:0,
+                    carne: "admin",
+                    contrasenia: "admin"
+                }))
+                navigate('/publicacioncrud');
             }
         }
         console.log(dataUser)
         
-        navigate('/publicacioncrud');
+        
     }
 
         return (
