@@ -19,7 +19,7 @@ async function cargaMasiva(req, res){
     
     const csv = require('csvtojson')
     
-   const converter = csv().fromFile(req.body.ruta).then((json) => {
+   const converter = csv().fromFile("..\\archivos\\"+req.body.ruta).then((json) => {
         json.forEach(guardar)
     })
     return res.status(200).send("Carga Masiva success")
