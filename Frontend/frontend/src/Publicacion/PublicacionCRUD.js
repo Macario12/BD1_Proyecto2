@@ -4,6 +4,7 @@ import {Card} from 'semantic-ui-react';
 
 // Components
 import PublicacionCard from '../Components/PublicacionCard'
+import ActividadCard from "../Components/ActividadCard";
 import AddPublicacion from './AddPublicacion';
 import Headerr from '../Components/Header'
 import Navbar from '../Components/Navbar'
@@ -26,7 +27,7 @@ export default function PublicacionCRUD () {
         };
 
         let urlgetPublicaciones = "http://127.0.0.1:4200/publicacion/obtenerxMaestro"
-        let urlgetActividades = "http://127.0.0.1:4200/publicacion/obtenerxMaestro"
+        let urlgetActividades = "http://127.0.0.1:4200/actividad/obtenerxMaestro"
         const saved = localStorage.getItem("User");
         const initial = JSON.parse(saved);
         let api = helpHttp();
@@ -35,7 +36,7 @@ export default function PublicacionCRUD () {
             id: initial.id_maestro
         })
         const [publicaciones, setPublicaciones] = useState([])
-        const [Actividades, setActividades] = useState([])
+        const [actividades, setActividades] = useState([])
 
         useEffect(() => {
             api.post(urlgetPublicaciones, {body:idUser}).then((res) => {
@@ -47,14 +48,16 @@ export default function PublicacionCRUD () {
                 }
             })
 
-            /*api.post(urlgetActividades, {body:idUser}).then((res) => {
+            api.post(urlgetActividades, {body:idUser}).then((res) => {
                 if(!res.err){
                     setActividades(res)
+                    console.log("hola1")
                     console.log(res)
+                    console.log("hola2")
                 }else{
                     console.log("ERROR")
                 }
-            })*/
+            })
         }, [])
 
         return(
@@ -78,6 +81,10 @@ export default function PublicacionCRUD () {
                         {publicaciones? 
                             publicaciones.map(e => 
                                 <PublicacionCard key={e.id_publicacion} show={true} publicacion={e}/>)
+                        :null}
+                        {actividades? 
+                            actividades.map(e => 
+                                <ActividadCard key={e.id_actividad} show={false} actividad={e}/>)
                         :null} 
                     </Card.Group>
                 </div>

@@ -8,7 +8,6 @@ export default function ActividadForm(props) {
         titulo: "",
         descripcion: "",
         fecha_entrega: "",
-        fecha_publicacion: "",
         punteo: 0,
         id_materia: 0
     });
@@ -56,18 +55,12 @@ export default function ActividadForm(props) {
                                     />
                                 </Form.Field>
                                 <Form.Field>
+                                    <label for="fecha_entrega">Fecha de entrega</label>
                                     <input 
                                         type = "date" 
                                         name ="fecha_entrega" 
                                         onChange={handleInputChange}
                                     />                         
-                                </Form.Field>
-                                <Form.Field>
-                                    <input 
-                                        type = "date" 
-                                        name ="fecha_publicacion" 
-                                        onChange={handleInputChange}
-                                    />                      
                                 </Form.Field>
                                 <Form.Field>
                                     <Form.Input 

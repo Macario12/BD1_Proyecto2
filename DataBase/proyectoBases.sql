@@ -50,6 +50,9 @@ CREATE TABLE examen (
     FOREIGN KEY (id_materia) REFERENCES materia(id_materia)
 );
 
+ALTER TABLE examen MODIFY COLUMN hora_inicio VARCHAR(10);
+ALTER TABLE examen MODIFY COLUMN hora_fin VARCHAR(10);
+
 CREATE TABLE pregunta (
 	id_pregunta INT AUTO_INCREMENT NOT NULL,
     pregunta VARCHAR(100) NOT NULL,
@@ -194,7 +197,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE add_examen(IN nombreExamen VARCHAR(50), IN fecha_publicacion DATE, IN hora_inicio DATETIME, IN hora_fin DATETIME, IN id_materia INT)
+CREATE PROCEDURE add_examen(IN nombreExamen VARCHAR(50), IN fecha_publicacion DATE, IN hora_inicio varchar(10), IN hora_fin varchar(10), IN id_materia INT)
 	BEGIN 
 		INSERT INTO examen (nombreExamen, fecha_publicacion, hora_inicio, hora_fin, id_materia)
 		VALUES (nombreExamen, fecha_publicacion, hora_inicio, hora_fin, id_materia);

@@ -1,5 +1,6 @@
-import { Card, Icon } from 'semantic-ui-react'
-import React, { Component } from "react";
+import { Card, Icon, Button } from 'semantic-ui-react'
+import { helpHttp } from "../Helper/helpHttp";
+import React, { useState} from "react";
 
 //components
 import EntregaActividad from './EntregaActividad';
@@ -13,42 +14,62 @@ const estiloCard = {
   margin: '5% 21%'
 };
 
-export default class ActividadCard extends Component {
-  entrega = this.props.entregas.find(entrega => entrega.id_actividad === this.props.actividad.id_actividad)
-  
-  render() {
-    console.log(this.entrega)
-    if(this.entrega == null){
-      this.entrega = {
+export default function ActividadCard(props) {
+    let entrega = props.entregas.find(entrega => entrega.id_actividad === props.actividad.id_actividad)
+    console.log(props.actividad)
+    if(entrega == null){
+      entrega = {
         estado:0,
         puntuacion:'no aplica'
       }
     }
+
+    let api = helpHttp();
+    let urlDelete = "http://localhost:4200/actividad/delete"
+
+    const [dataActividad] = useState({
+      id:props.actividad.id_actividad
+    })
+
+    const deletePublicacion = (data)=> {
+      data.preventDefault();
+      api.post(urlDelete, {body:dataActividad}).then((res) => {
+        if(!res.err){
+          alert("Se eliminó la actividad")
+          console.log(res)
+        }else{
+            console.log("ERROR")
+        }
+      })
+    }
+
     return (
       <Card style={estiloCard}>
         <Card.Content>
           <Icon disabled name='world' style={estilo} />
-          <Card.Header>{this.props.actividad.titulo}</Card.Header>
-          
-          <Card.Description>Entrega: {this.props.actividad.fechaEntrega}</Card.Description>
-          <Card.Description>Materia: {this.props.actividad.nombre}</Card.Description>
-          <Card.Description>Estado: {this.props.actividad.Entregado < this.entrega.estado ? "No Entregado": "Entregado"}</Card.Description>
-          <Card.Description>Puntuacion: {this.entrega.puntuacion}</Card.Description>
+          <Card.Header>{props.actividad.titulo}</Card.Header>
+          <Card.Description>Entrega: {props.actividad.fechaEntrega}</Card.Description>
+          <Card.Description>Materia: {props.actividad.nombre}</Card.Description>
+          <Card.Description>Estado: {props.actividad.Entregado < entrega.estado ? "No Entregado": "Entregado"}</Card.Description>
+          <Card.Description>Puntuacion: {entrega.puntuacion}</Card.Description>
           <Card.Meta>
-          {this.props.actividad.descripcion}
+          {props.actividad.descripcion}
           </Card.Meta>
           <Card.Meta>
-            Fecha: {this.props.actividad.fechaPublicacion}
+            Fecha: {props.actividad.fechaPublicacion}
           </Card.Meta>
         </Card.Content>
-        {this.props.show ?
         <Card.Content extra>
-        <div className='ui two buttons' >
-          <EntregaActividad/> 
-        </div>
+        {entrega.estado == 0 ? 
+          <div className='ui two buttons'> 
+            {props.show
+            ?<EntregaActividad/> 
+            :<Button basic color='red' onClick={deletePublicacion}>
+              Eliminar
+            </Button>}
+          </div>:null}
+        
         </Card.Content>
-        :null}
       </Card>
     )
-  }
 }
