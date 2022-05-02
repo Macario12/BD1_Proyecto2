@@ -13,7 +13,7 @@ export default function CargarAlumno() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>Cargar CSV de alumno</Button>}
+      trigger={<Button basic color='black'>Cargar CSV de alumno</Button>}
     >
       <Modal.Header>Cargar CSV de alumno</Modal.Header>
       <Modal.Content>

@@ -24,10 +24,10 @@ export default class Maestro extends Component {
                     firstLink="/maestro" 
                     second="Alumno"
                     secondLink="/alumnocrud"
-                    third="Examen"
-                    thirdLink="/examen"
-                    fourth="Alumno"
-                    fourthLink="/alumno"
+                    third="Actividades"
+                    thirdLink="/addactividad"
+                    fourth="Publicaciones"
+                    fourthLink="/publicacioncrud"
                 />
                 <div style={estiloAdd}>
                     <AddMaestro/>

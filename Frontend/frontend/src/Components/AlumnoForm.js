@@ -1,5 +1,5 @@
 import { Button, Form, Segment, Grid} from 'semantic-ui-react'
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { helpHttp } from "../Helper/helpHttp";
 
 //component
@@ -7,6 +7,7 @@ import { helpHttp } from "../Helper/helpHttp";
 export default function AlumnoForm(props) {
 
     let urlAddEstudiante = "http://localhost:4200/alumno/add"
+    let urlEditEstudiante = "http://localhost:4200/alumno/update"
     let api = helpHttp();
 
     const [dataAlumno, setDataAlumno] = useState({
@@ -19,26 +20,56 @@ export default function AlumnoForm(props) {
         Contrasena: ""
     });
 
+    const [dataEditAlumno, setDataEditAlumno] = useState({
+        id: props.data.id_alumno,
+        carne: props.data.carne,
+        nombre: props.data.nombre,
+        apellido: props.data.apellido,
+        telefono: props.data.telefono,
+        direccion: props.data.direccion,
+        email: props.data.email,
+        contrasenia: props.data.contrasenia
+    });
+
     const handleInputChange = (e) => {
-        setDataAlumno({
-            ...dataAlumno,
-            [e.target.name] : e.target.value
-        })
+        if(props.tipo === "Agregar alumno"){
+            setDataAlumno({
+                ...dataAlumno,
+                [e.target.name] : e.target.value
+            })
+        }else{
+            setDataEditAlumno({
+                ...dataEditAlumno,
+                [e.target.name] : e.target.value
+            })
+        }
     };
 
     
     const sendData = (data)=> {
         data.preventDefault();
 
-        api.post(urlAddEstudiante, {body:dataAlumno}).then((res) => {
-            if(!res.err){
-                setDataAlumno(res)
-                console.log(res)
-            }else{
-                console.log("ERROR")
-            }
-        })
-        console.log(dataAlumno)
+        if(props.tipo === "Agregar alumno"){
+            api.post(urlAddEstudiante, {body:dataAlumno}).then((res) => {
+                if(!res.err){
+                    setDataAlumno(res)
+                    alert("Se agregó el alumno")
+                    console.log(res)
+                }else{
+                    console.log("ERROR")
+                }
+            })
+        }else{
+            api.put(urlEditEstudiante, {body:dataEditAlumno}).then((res) => {
+                if(!res.err){
+                    setDataEditAlumno(res)
+                    alert("Se actualizó el alumno")
+                    console.log(res)
+                }else{
+                    console.log("ERROR")
+                }
+            })
+        }
     }
 
     return (
@@ -49,54 +80,68 @@ export default function AlumnoForm(props) {
                         <Form>
                             <Form.Field>
                                 <Form.Input 
-                                    name='Nombre' 
+                                    name={props.tipo === "Agregar alumno"
+                                        ?'Nombre'
+                                        :'nombre'} 
                                     placeholder='Nombre' 
                                     onChange={handleInputChange}
                                 />
                             </Form.Field>
                             <Form.Field>
                                 <Form.Input 
-                                    name='Apellido' 
+                                    name={props.tipo === "Agregar alumno"
+                                    ?'Apellido'
+                                    :'apellido'}  
                                     placeholder='Apellidos' 
                                     onChange={handleInputChange}
                                 />
                             </Form.Field>
                             <Form.Field>
                                 <Form.Input 
-                                    name='Carnet' 
+                                    name={props.tipo === "Agregar alumno"
+                                    ?'Carnet'
+                                    :'carne'} 
                                     placeholder='Carné' 
                                     onChange={handleInputChange}
                                     />
                             </Form.Field>
                             <Form.Field>
                                 <Form.Input 
-                                    name='Telefono' 
+                                    name={props.tipo === "Agregar alumno"
+                                        ?'Telefono'
+                                        :'telefono'} 
                                     placeholder='Teléfono' 
                                     onChange={handleInputChange}
                                 />
                             </Form.Field>
                             <Form.Field>
                                 <Form.Input 
-                                    name='Direccion' 
+                                    name={props.tipo === "Agregar alumno"
+                                    ?'Direccion'
+                                    :'direccion'} 
                                     placeholder='Dirección' 
                                     onChange={handleInputChange}
                                 />
                             </Form.Field>
                             <Form.Field>
                                 <Form.Input 
-                                    name='Correo' 
+                                    name={props.tipo === "Agregar alumno"
+                                    ?'Correo'
+                                    :'email'} 
                                     placeholder='Correo Electronico' 
                                     onChange={handleInputChange}
                                 />
                             </Form.Field>
                             <Form.Field>
                                 <Form.Input 
-                                    name='Contrasena' 
+                                    name={props.tipo === "Agregar alumno"
+                                    ?'Contrasena'
+                                    :'contrasenia'} 
                                     placeholder='Contraseña' 
                                     onChange={handleInputChange}    
                                 />
                             </Form.Field>
-                            <Button onClick={sendData} fluid primary type="submit">Agregar Alumno</Button>
+                            <Button onClick={sendData} fluid primary type="submit">{props.tipo}</Button>
                         </Form>
                     </Segment>
                 </Grid.Column>

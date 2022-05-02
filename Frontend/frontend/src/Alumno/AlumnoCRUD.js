@@ -10,20 +10,11 @@ import AddAlumno from './AddAlumno';
 
 export default class AlumnoCRUD extends Component {
     render(){
-        const estiloAdd= {
-            position: 'absolute',
-            margin: '1% 0 0 0',
-            width: '100%',
-            height: '30%',
-            left: '90%', 
-        };
-
         const estiloCargar= {
             position: 'absolute',
-            margin: '1% 100% 9% 0',
-            width: '100%',
-            height: '30%',
-            left: '90%', 
+            margin: '1% 0 0 0',
+            width: '400px',
+            left: '35%', 
         };
         return(
             <div>
@@ -33,15 +24,15 @@ export default class AlumnoCRUD extends Component {
                     firstLink="/maestro" 
                     second="Alumno"
                     secondLink="/alumnocrud"
-                    third="Examen"
-                    thirdLink="/examen"
-                    fourth="Alumno"
-                    fourthLink="/alumno"
+                    third="Actividades"
+                    thirdLink="/addactividad"
+                    fourth="Publicaciones"
+                    fourthLink="/publicacioncrud"
+
                 />
-                <div style={estiloAdd}>
+
+        <div className='ui two buttons' style={estiloCargar} >
                     <AddAlumno/>
-                </div>
-                <div  style={estiloCargar}>
                     <CargarAlumno/>
                 </div>
                 <div>

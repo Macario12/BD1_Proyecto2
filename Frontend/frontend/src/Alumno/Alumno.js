@@ -13,10 +13,9 @@ export default function Alumno(props){
 
     const estiloCargar= {
         position: 'absolute',
-        margin: '1% 100% 9% 0',
-        width: '100%',
-        height: '30%',
-        left: '90%', 
+        margin: '1% 0 0 0',
+        width: '400px',
+        left: '35%', 
     };
 
     const estiloTabla = {
@@ -24,6 +23,12 @@ export default function Alumno(props){
         width: '1040px',
         top: '30%',
         left: '18%',
+    };
+
+    const estiloNavbar = {
+        position: 'absolute',
+        top: '30%',
+        left: '1%'
     };
 
     let urlFindMateria = "http://localhost:4200/materia/consultarmateriaxmaestro"
@@ -109,13 +114,13 @@ export default function Alumno(props){
                     fourth="Alumno"
                     fourthLink="/alumno"
                 />
-                <AddAlumno/>
 
-                <div  style={estiloCargar}>
+                <div className='ui two buttons' style={estiloCargar} >
+                    <AddAlumno/>
                     <CargarAlumno/>
                 </div>
                 <div>
-                    <Menu pointing vertical>
+                    <Menu pointing vertical style={estiloNavbar}>
                         {dataMateria.map(e => 
                             <Menu.Item 
                                 active={state.activeItem === e.nombre}
@@ -147,7 +152,7 @@ export default function Alumno(props){
                                         <Table.Cell>{e.nombre} {e.apellido}</Table.Cell>
                                         {dataAlumno
                                             ?dataAlumno.map(a => 
-                                                a.carne === e.carne && dataActividad.find()
+                                                a.carne === e.carne
                                                 ?<Table.Cell>{a.puntuacion}</Table.Cell>
                                                 :<></>)
                                             :<></>}

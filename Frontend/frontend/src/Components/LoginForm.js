@@ -95,7 +95,7 @@ export default function LoginForm () {
                     carne: "admin",
                     contrasenia: "admin"
                 }))
-                navigate('/publicacioncrud');
+                navigate('/maestro');
             }
         }
         console.log(dataUser)

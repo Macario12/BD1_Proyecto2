@@ -13,7 +13,7 @@ function AddAlumno() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>Crear Alumno</Button>}
+      trigger={<Button basic color='black'>Crear Alumno</Button>}
     >
       <Modal.Header>Agregar una Alumno</Modal.Header>
       <Modal.Content>
