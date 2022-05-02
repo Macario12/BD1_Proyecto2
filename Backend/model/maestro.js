@@ -13,7 +13,6 @@ async function addMasestro(maestro){
 }
 
 async function cargaMasiva(maestro){
-    console.log(maestro)
   connection.query("CALL add_maestro(?,?,?,?,?,?,?,?,?,?)" ,
   [maestro.Nombre,maestro.Apellido,maestro.id,maestro.Telefono,maestro.Direccion,maestro.Correo,maestro.FechaNacimiento,maestro.DPI,"https://img.freepik.com/foto-gratis/retrato-joven-sonriente-gafas_171337-4842.jpg?w=2000",maestro.Contrasena]
   , (error, results, fields) => {
