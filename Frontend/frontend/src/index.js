@@ -12,6 +12,7 @@ import PublicacionCRUD from './Publicacion/PublicacionCRUD';
 import Notificacion from "./Notificaciones/Notificacion";
 import AddActividad from './Actividad/AddActividad';
 import Publicacion from "./Publicacion/Publicacion";
+import NotasAlumno from "./Materia/NotasAlumno";
 import AlumnoCRUD from "./Alumno/AlumnoCRUD";
 import Actividad from "./Actividad/Actividad";
 import AddExamen from "./Examen/AddExamen";
@@ -27,6 +28,7 @@ root.render(
       <Route path="notificacion" element={<Notificacion />} />
       <Route path="addactividad" element={<AddActividad />} />
       <Route path="publicacion" element={<Publicacion />} />
+      <Route path="notasalumno" element={<NotasAlumno />} />
       <Route path="alumnocrud" element={<AlumnoCRUD />} />
       <Route path="actividad" element={<Actividad />} />
       <Route path="examen" element={<AddExamen />} />

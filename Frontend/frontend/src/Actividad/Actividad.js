@@ -70,6 +70,8 @@ export default function Actividad () {
                 thirdLink="/"
                 fourth="Notificaciones"
                 fourthLink="/notificacion"
+                fifth="Notas"
+                fifthLink="notasalumno"
             />
             <div>
                 <Card.Group style={estiloCards}>

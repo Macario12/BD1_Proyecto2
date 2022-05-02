@@ -28,6 +28,8 @@ export default class Notificacion extends Component {
                     thirdLink="/"
                     fourth="Notificaciones"
                     fourthLink="/notificacion"
+                    fifth="Notas"
+                    fifthLink="notasalumno"
                 />
                 <div>
                     <Card.Group style={estiloCards}>

@@ -147,9 +147,9 @@ export default function Alumno(props){
                                         <Table.Cell>{e.nombre} {e.apellido}</Table.Cell>
                                         {dataAlumno
                                             ?dataAlumno.map(a => 
-                                                a.carne === e.carne && a.titulo=="Ejercico"
+                                                a.carne === e.carne && dataActividad.find()
                                                 ?<Table.Cell>{a.puntuacion}</Table.Cell>
-                                                :<Table.Cell>0</Table.Cell>)
+                                                :<></>)
                                             :<></>}
                                     </Table.Row>
                                 )}
