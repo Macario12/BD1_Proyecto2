@@ -17,7 +17,7 @@ export default function NotasAlumno(){
                 fourth="Notificaciones"
                 fourthLink="/notificacion"
                 fifth="Notas"
-                fifthLink="notasalumno"
+                fifthLink="/notasalumno"
             />
         </div>
     )

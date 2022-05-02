@@ -60,7 +60,7 @@ export default function Publicacion () {
                     fourth="Notificaciones"
                     fourthLink="/notificacion"
                     fifth="Notas"
-                    fifthLink="notasalumno"
+                    fifthLink="/notasalumno"
                 />
                 <div>
                     <Card.Group style={estiloCards}>
