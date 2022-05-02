@@ -4,7 +4,7 @@ import React from 'react'
 //component
 import MaestroForm from '../Components/MaestroForm'
 
-function EditMaestro() {
+function EditMaestro(props) {
   const [open, setOpen] = React.useState(false)
 
 
@@ -17,7 +17,7 @@ function EditMaestro() {
     >
       <Modal.Header>Editar maestro</Modal.Header>
       <Modal.Content>
-        <MaestroForm tipo = "Editar maestro"/>
+        <MaestroForm tipo = "Editar maestro" data={props.data}/>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>

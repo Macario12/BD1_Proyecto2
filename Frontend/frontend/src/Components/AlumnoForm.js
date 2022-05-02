@@ -43,6 +43,10 @@ export default function AlumnoForm(props) {
                 [e.target.name] : e.target.value
             })
         }
+
+        window.location.href = window.location.href;
+        // or
+        window.location.replace('');
     };
 
     

@@ -6,7 +6,20 @@ import MaestroForm from '../Components/MaestroForm'
 
 function AddMaestro() {
   const [open, setOpen] = React.useState(false)
-
+  
+  const e = {
+    id_maestro: 0,
+    nombre: "",
+    apellido: "",
+    no_registro: "",
+    telefono: "",
+    direccion: "",
+    email: "",
+    fecha_nac: "",
+    dpi: "",
+    foto_perfil: "",
+    contrasenia: ""
+  }
 
   return (
     <Modal
@@ -17,7 +30,7 @@ function AddMaestro() {
     >
       <Modal.Header>Agregar maestro</Modal.Header>
       <Modal.Content>
-        <MaestroForm tipo = "Agregar maestro"/>
+        <MaestroForm tipo = "Agregar maestro" data={e}/>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>

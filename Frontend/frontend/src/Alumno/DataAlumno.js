@@ -39,6 +39,10 @@ export default function DataAlumno(props) {
                 console.log("ERROR")
             }
         })
+
+        window.location.href = window.location.href;
+        // or
+        window.location.replace('');
     }
 
     return(

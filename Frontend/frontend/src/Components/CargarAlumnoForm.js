@@ -7,6 +7,7 @@ import { helpHttp } from "../Helper/helpHttp";
 export default function CargarAlumnoForm(props) {
 
     let urlCargarAlumno = "http://127.0.0.1:4200/alumno/cargaMasiva"
+    let urlCargarMaestro = "http://127.0.0.1:4200/maestro/cargaMasiva"
     let api = helpHttp();
 
     const [dataFile, setDataFile] = useState({
@@ -22,16 +23,31 @@ export default function CargarAlumnoForm(props) {
     
     const sendData = (data)=> {
         data.preventDefault();
-
-        api.post(urlCargarAlumno, {body:dataFile}).then((res) => {
-            if(!res.err){
-                setDataFile(res)
-                console.log(res)
-            }else{
-                console.log("ERROR")
-            }
-        })
+        if(props.tipo === "alumno"){
+            api.post(urlCargarAlumno, {body:dataFile}).then((res) => {
+                if(!res.err){
+                    setDataFile(res)
+                    console.log(res)
+                }else{
+                    console.log("ERROR")
+                }
+            })
+        }
+        else{
+            api.post(urlCargarMaestro, {body:dataFile}).then((res) => {
+                if(!res.err){
+                    setDataFile(res)
+                    console.log(res)
+                }else{
+                    console.log("ERROR")
+                }
+            })
+        }
         console.log(dataFile)
+        alert("Se cargó el archivo exitosamente")
+        window.location.href = window.location.href;
+        // or
+        window.location.replace('');
     }
 
     return (
@@ -48,7 +64,7 @@ export default function CargarAlumnoForm(props) {
                                     onChange={handleInputChange}
                                 />  
                             </Form.Field>
-                            <Button onClick={sendData} fluid primary type="submit">Cargar CSV de Alumno</Button>
+                            <Button onClick={sendData} fluid primary type="submit">Cargar CSV de {props.tipo}</Button>
                         </Form>
                     </Segment>
                 </Grid.Column>

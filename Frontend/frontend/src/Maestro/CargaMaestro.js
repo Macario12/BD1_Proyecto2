@@ -4,7 +4,7 @@ import React from 'react'
 //component
 import CargarAlumnoForm from '../Components/CargarAlumnoForm'
 
-export default function CargarAlumno() {
+export default function CargaMaestro() {
   const [open, setOpen] = React.useState(false)
 
 
@@ -13,11 +13,11 @@ export default function CargarAlumno() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button basic color='black'>Cargar CSV de alumno</Button>}
+      trigger={<Button basic color='black'>Cargar CSV de maestro</Button>}
     >
-      <Modal.Header>Cargar CSV de alumno</Modal.Header>
+      <Modal.Header>Cargar CSV de maestro</Modal.Header>
       <Modal.Content>
-        <CargarAlumnoForm tipo={"alumno"}/>
+        <CargarAlumnoForm tipo={"maestro"}/>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>

@@ -2,7 +2,7 @@ const connection = require('../database/connection')
 
 async function addMasestro(maestro){
     
-    connection.query("CALL add_maestro(?,?,?,?,?,?,?,?,?,?)" ,
+    connection.query("CALL add_maestroM(?,?,?,?,?,?,?,?,?,?)" ,
     [maestro.nombre,maestro.apellido,maestro.no_registro,maestro.telefono,maestro.direccion,maestro.email,maestro.fecha_nac,maestro.dpi,maestro.foto_perfil,maestro.contrasenia]
     , (error, results, fields) => {
         if (error) {
@@ -46,7 +46,7 @@ async function eliminar(maestro,callback){
   
   connection.query('CALL delete_Maestro(?);',[maestro.id], function(err,result){
      if(err) throw err;
-     callback(result[0][0])
+     callback("eliminado")
   });
      
      
