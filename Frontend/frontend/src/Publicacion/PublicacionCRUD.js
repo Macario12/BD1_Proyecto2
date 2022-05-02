@@ -84,7 +84,7 @@ export default function PublicacionCRUD () {
                         :null}
                         {actividades? 
                             actividades.map(e => 
-                                <ActividadCard key={e.id_actividad} show={false} actividad={e}/>)
+                                <ActividadCard key={e.id_actividad} show={false} actividad={e} entregas={[]}/>)
                         :null} 
                     </Card.Group>
                 </div>
