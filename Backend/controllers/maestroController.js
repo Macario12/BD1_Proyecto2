@@ -40,10 +40,20 @@ function eliminar(req, res){
     });
      
  }
+
+ 
+ function obtenerTodos(req, res){
+    Maestro.obtenerTodos((result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
 module.exports = {
     add,
     login,
     cargaMasiva,
     eliminar,
-    actualizar
+    actualizar,
+    obtenerTodos
 }

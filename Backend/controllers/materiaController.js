@@ -27,6 +27,14 @@ function obtenerTodos(req, res){
      
  }
 
+ function consultarMateriaxAlumno(req, res){
+    Materia.consultarMateriaxAlumno(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
+
 module.exports = {
-    add,obtenerTodos,consultarmateriaxmaestro,consultaractividadxmateria
+    add,obtenerTodos,consultarmateriaxmaestro,consultaractividadxmateria,consultarMateriaxAlumno
 }

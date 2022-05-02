@@ -52,10 +52,18 @@ async function eliminar(maestro,callback){
      
  }
 
+ async function obtenerTodos(callback){
+  connection.query('CALL consultarMaestros();', function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+  
+ }
 module.exports = {
     addMasestro,
     login,
     cargaMasiva,
     eliminar,
-    actualizar
+    actualizar,
+    obtenerTodos
 }
