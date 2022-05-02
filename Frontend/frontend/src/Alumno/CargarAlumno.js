@@ -2,9 +2,9 @@ import { Button,Modal } from 'semantic-ui-react'
 import React from 'react'
 
 //component
-import AlumnoForm from '../Components/AlumnoForm';
+import CargarAlumnoForm from '../Components/CargarAlumnoForm'
 
-function AddAlumno() {
+export default function CargarAlumno() {
   const [open, setOpen] = React.useState(false)
 
 
@@ -13,11 +13,11 @@ function AddAlumno() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>Crear Alumno</Button>}
+      trigger={<Button>Cargar CSV de alumno</Button>}
     >
-      <Modal.Header>Agregar una Alumno</Modal.Header>
+      <Modal.Header>Cargar CSV de alumno</Modal.Header>
       <Modal.Content>
-        <AlumnoForm tipo = "Agregar alumno"/>
+        <CargarAlumnoForm/>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
@@ -27,6 +27,3 @@ function AddAlumno() {
     </Modal>
   )
 }
-
-
-export default AddAlumno

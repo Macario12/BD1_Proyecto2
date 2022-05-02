@@ -12,7 +12,7 @@ export default class DataAlumno extends Component {
             margin: '20px '
         };
         return(
-            <Table center style={estiloTabla}>
+            <Table centered style={estiloTabla}>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Nombre</Table.HeaderCell>

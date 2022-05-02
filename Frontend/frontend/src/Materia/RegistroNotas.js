@@ -12,7 +12,7 @@ export default class RegistroNotas extends Component {
             left: '30%',
         };
         return(
-            <Table center style={estiloTabla}>
+            <Table style={estiloTabla}>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Carné</Table.HeaderCell>

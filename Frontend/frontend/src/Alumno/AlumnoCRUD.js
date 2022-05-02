@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 // Components
+import CargarAlumno from "./CargarAlumno";
 import Headerr from '../Components/Header'
 import Navbar from '../Components/Navbar'
 import DataAlumno from "./DataAlumno";
@@ -12,6 +13,14 @@ export default class AlumnoCRUD extends Component {
         const estiloAdd= {
             position: 'absolute',
             margin: '1% 0 0 0',
+            width: '100%',
+            height: '30%',
+            left: '90%', 
+        };
+
+        const estiloCargar= {
+            position: 'absolute',
+            margin: '1% 100% 9% 0',
             width: '100%',
             height: '30%',
             left: '90%', 
@@ -31,6 +40,9 @@ export default class AlumnoCRUD extends Component {
                 />
                 <div style={estiloAdd}>
                     <AddAlumno/>
+                </div>
+                <div  style={estiloCargar}>
+                    <CargarAlumno/>
                 </div>
                 <div>
                     <DataAlumno/>
