@@ -20,6 +20,13 @@ function obtenerTodos(req, res){
      
  }
 
+ function consultaractividadxmateria(req, res){
+    Materia.consultaractividadxmateria(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
 module.exports = {
-    add,obtenerTodos,consultarmateriaxmaestro
+    add,obtenerTodos,consultarmateriaxmaestro,consultaractividadxmateria
 }

@@ -29,6 +29,14 @@ async function obtenerTodos(callback){
   
  }
  
+ async function consultaractividadxmateria(materia,callback){
+  connection.query('CALL consultaactividadxmateria(?);',[materia.id], function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+  
+ }
+
 module.exports = {
-    addMateria,obtenerTodos,consultarmateriaxmaestro
+    addMateria,obtenerTodos,consultarmateriaxmaestro,consultaractividadxmateria
 }

@@ -228,14 +228,14 @@ CREATE PROCEDURE add_actividad(IN titulo VARCHAR(50), IN descripcion VARCHAR(100
 END$$ 
 DELIMITER ;
 
+Drop procedure add_entrega_tarea;
 DELIMITER $$
-CREATE PROCEDURE add_entrega_tarea(IN fecha DATETIME, IN archivo VARCHAR(100), IN estado INT,  IN puntuacion FLOAT, IN observacion VARCHAR(100), IN id_alumno INT, IN id_actividad INT)
+CREATE PROCEDURE add_entrega_tarea(IN archivo VARCHAR(100), IN estado INT,  IN puntuacion FLOAT, IN observacion VARCHAR(100), IN id_alumno INT, IN id_actividad INT)
 	BEGIN 
 		INSERT INTO entrega_tarea (fecha, archivo, estado, puntuacion, observacion, id_alumno, id_actividad)
-		VALUES (fecha, archivo, estado, puntuacion, observacion, id_alumno, id_actividad);
+		VALUES (now(), archivo, estado, puntuacion, observacion, id_alumno, id_actividad);
 END$$ 
 DELIMITER ;
-
 DELIMITER $$
 CREATE PROCEDURE add_notificacion_tarea(IN nombre VARCHAR(50), IN descripcion VARCHAR(100), IN leido INT, IN id_entrega_tarea INT)
 	BEGIN 
