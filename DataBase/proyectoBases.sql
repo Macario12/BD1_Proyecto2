@@ -278,5 +278,203 @@ DELIMITER ;
 
 
 
+DELIMITER $$
+CREATE PROCEDURE consultarAlumnos()
+	BEGIN 
+		Select * from alumno where carne = 201909675;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultarMaestros()
+	BEGIN 
+		Select * from maestro;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaActividadxAlumno(in id int)
+	BEGIN 
+		Select  p.id_actividad, p.titulo, p.descripcion, DATE_FORMAT(p.fecha_entrega, '%Y-%m-%d') as fechaEntrega,DATE_FORMAT(p.fecha_publicacion, '%Y-%m-%d') as fechaPublicacion,p.punteo, (0) as Entregado,p.id_materia,m.nombre from actividad p
+        inner join asignacion a on a.id_materia = p.id_materia
+        inner join materia m on a.id_materia = m.id_materia
+        -- inner join entrega_tarea e on e.id_actividad = p.id_actividad
+        where a.id_alumno = id
+        ;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaEntregaActividadxAlumno(in id int)
+	BEGIN 
+		Select  e.id_entrega_tarea, DATE_FORMAT(e.fecha, '%Y-%m-%d') as fecha, e.estado, e.puntuacion,e.id_actividad from entrega_tarea e
+	
+        where e.id_alumno = id
+        ;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultarPublicacionxAlumno(in id int)
+	BEGIN 
+		Select  p.id_publicacion, p.titulo, p.descripcion, DATE_FORMAT(p.fecha, '%Y-%m-%d') as fecha,p.id_materia from publicacion p
+        
+        inner join asignacion a on a.id_materia = p.id_materia
+        where a.id_alumno = id
+        ;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaPublicacionxMaestro(in id int)
+	BEGIN 
+    if(id <> 0) then
+		begin
+		Select p.id_publicacion, p.titulo, p.descripcion, DATE_FORMAT(p.fecha, '%Y-%m-%d') as fecha,p.id_materia ,m.nombre from publicacion p
+        inner join materia m on m.id_materia = p.id_materia
+        where m.id_maestro = id;
+        end;
+	else	
+		begin
+			Select p.id_publicacion, p.titulo, p.descripcion, DATE_FORMAT(p.fecha, '%Y-%m-%d') as fecha,p.id_materia from publicacion p;
+        end;
+	END IF;
+		
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaActivididadxMaestro(in id int)
+	BEGIN 
+    if(id <> 0) then
+		begin
+		Select p.id_actividad, p.titulo, p.descripcion, DATE_FORMAT(p.fecha_entrega, '%Y-%m-%d') as fecha_entrega,DATE_FORMAT(p.fecha_publicacion, '%Y-%m-%d') as fecha_publicacion, p.punteo,p.id_materia ,m.nombre from actividad p
+        inner join materia m on m.id_materia = p.id_materia
+        where m.id_maestro = id;
+        end;
+	else	
+		begin
+			Select p.id_actividad, p.titulo, p.descripcion, DATE_FORMAT(p.fecha_entrega, '%Y-%m-%d') as fecha_entrega,DATE_FORMAT(p.fecha_publicacion, '%Y-%m-%d') as fecha_publicacion, p.punteo,p.id_materia ,m.nombre from actividad p
+            inner join materia m on m.id_materia = p.id_materia;
+        end;
+	END IF;
+		
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaExamenxMaestro(in id int)
+	BEGIN 
+    if(id <> 0) then
+		begin
+		Select p.id_examen,p.nombreExamen,DATE_FORMAT(p.fecha_publicacion, '%Y-%m-%d') as fecha_publicacion,DATE_FORMAT(p.hora_inicio, '%Y-%m-%d %H:%i') as horaInicio,DATE_FORMAT(p.hora_fin, '%Y-%m-%d %H:%i') as horaFin,p.id_materia ,m.nombre from examen p
+        inner join materia m on m.id_materia = p.id_materia
+        where m.id_maestro = id;
+        end;
+	else	
+		begin
+			Select p.id_examen,p.nombreExamen,DATE_FORMAT(p.fecha_publicacion, '%Y-%m-%d') as fecha_publicacion,DATE_FORMAT(p.hora_inicio, '%Y-%m-%d %H:%i') as horaInicio,DATE_FORMAT(p.hora_fin, '%Y-%m-%d %H:%i') as horaFin,p.id_materia ,m.nombre from examen p
+            inner join materia m on m.id_materia = p.id_materia;
+        end;
+	END IF;
+		
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultarAlumnosxMateria(in id int)
+	BEGIN 
+		Select alum.carne,alum.nombre,act.titulo,a.puntuacion from entrega_tarea a 
+        inner join alumno alum on alum.id_alumno = a.id_alumno
+        inner join actividad act on act.id_actividad = a.id_actividad
+        inner join materia mat on act.id_materia = mat.id_materia
+        where mat.id_materia = id
+        group by alum.carne,alum.nombre,act.titulo,a.puntuacion
+        ;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultarAlumnosAsigxMateria(in id int)
+	BEGIN 
+		Select alum.carne,alum.nombre,alum.apellido from asignacion a 
+        inner join alumno alum on alum.id_alumno = a.id_alumno
+        where a.id_materia = id
+        ;
+END$$ 
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE consultarMateria()
+	BEGIN 
+		Select * from materia;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultarActividad()
+	BEGIN 
+		Select * from actividad;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultarmateriaxmaestro(in id int)
+	BEGIN 
+		Select mat.id_materia,mat.nombre from materia mat
+        inner join maestro maes on mat.id_maestro = maes.id_maestro
+        where maes.id_maestro = id;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaentregaTarea(in idEstudiante int,in id_Actividad int)
+	BEGIN 
+		Select mat.id_materia,mat.nombre from entrega_tarea ent
+        -- inner join alumno a on a.id_alumno = ent.id_alumno
+        -- inner join actividad ac on ac.id_actividad = a.id_actividad
+        where ent.id_alumno = idEstudiante AND ent.id_actividad = id_Actividad;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE notificaciones(in idEstudiante int)
+	BEGIN 
+		Select * from notificacion_tarea notf
+        inner join entrega_tarea e on e.id_entrega_tarea = notf.id_entrega_tarea
+        where e.id_alumno = id
+        ;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaactividadxmateria(in id int)
+	BEGIN 
+		Select * from actividad
+        where id_materia = id
+        ;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultaMateriaxAlumnos(in id int)
+	BEGIN 
+		Select m.id_materia,m.nombre from asignacion a
+        inner join materia m on a.id_materia = m.id_materia
+        where a.id_alumno = id
+        ;
+END$$ 
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE consultarActividadxMateria(in id int, in idALumno int)
+	BEGIN 
+		Select act.titulo,a.puntuacion from entrega_tarea a 
+        inner join actividad act on act.id_actividad = a.id_actividad
+        inner join materia mat on act.id_materia = mat.id_materia
+        where mat.id_materia = id AND a.id_alumno = idALumno;
+END$$ 
+DELIMITER ;
 
 
