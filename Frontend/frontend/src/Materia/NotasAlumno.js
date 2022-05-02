@@ -3,7 +3,7 @@
 import Navbar from "../Components/Navbar"
 import Headerr from "../Components/Header"
 import { helpHttp } from "../Helper/helpHttp";
-import { Grid, Menu, Segment } from 'semantic-ui-react'
+import { Grid, Menu, Segment,Icon, Label, Table } from 'semantic-ui-react'
 import React, { useState, useEffect} from "react";
 export default function NotasAlumno(){
     const [state, setState] = useState({
@@ -11,48 +11,28 @@ export default function NotasAlumno(){
         idItem: 0
     });
     let urlFindMateria = "http://127.0.0.1:4200/materia/consultarMateriaxAlumno"
+    let urlgetPublicaciones = "http://127.0.0.1:4200/actividad/obtenerxAlumno"
+    let urlgetEntregaActividad = "http://127.0.0.1:4200/actividad/obtenerActividadxMateria"
     const saved = localStorage.getItem("User");
     const initial = JSON.parse(saved);
     const [dataUser] = useState(initial)
     const [dataMateria, setDataMateria] = useState([])
+    const [publicaciones, setPublicaciones] = useState([])
+    const [entregaActividad, setEntregaActividad] = useState([])
     let api = helpHttp();
     const handleItemClick = (e, {name, value}) => {
         setState({ activeItem: name, idItem: value})  
+        console.log(e)
         console.log(state)
-
-       /*  api.post(urlFindAlumno, {body:{id:state.idItem}}).then((res) => {
+        
+        api.post(urlgetEntregaActividad, {body:{id:state.idItem,idAlumno:dataUser.id_alumno}}).then((res) => {
             if(!res.err){
-                setDataAlumno(res)
+                setEntregaActividad(res)
                 console.log(res)
             }else{
                 console.log("ERROR")
             }
         })
-
-        api.post(urlFindActividad, {body:{id:state.idItem}}).then((res) => {
-            if(!res.err){
-                setDataActividad(res)
-                console.log(res)
-                
-            }else{
-                console.log("ERROR")
-            }
-        })
-
-        api.post(urlFindAlumnos, {body:{id:state.idItem}}).then((res) => {
-            if(!res.err){
-                setDataAlumnoMateria(res)
-                console.log(res)
-            }else{
-                console.log("ERROR")
-            }
-        })
-
-        for( let Alumno of dataAlumno){
-            for (const index in Alumno){
-                console.log(index,": ", Alumno[index])
-            }
-        } */
     };
 
     useEffect(() => {
@@ -64,6 +44,23 @@ export default function NotasAlumno(){
                 console.log("ERROR")
             }
         })
+      /*  api.post(urlgetPublicaciones,{body:{id:dataUser.id_alumno}}).then((res) => {
+            if(!res.err){
+                setPublicaciones(res)
+                console.log(res)
+            }else{
+                console.log("ERROR")
+            }
+        })
+
+        api.post(urlgetEntregaActividad,{body:{id:dataUser.id_alumno}}).then((res) => {
+            if(!res.err){
+                setEntregaActividad(res)
+                console.log(res)
+            }else{
+                console.log("ERROR")
+            }
+        })*/
     }, [])
 
     return(
@@ -87,10 +84,10 @@ export default function NotasAlumno(){
                 <Menu fluid vertical tabular>
                 {dataMateria.map(e => 
                     <Menu.Item
-                    name={e.nombre}
-                    value = {e.id_materia}
-                    key={parseInt(e.id_materia, 10)} 
                     active={state.activeItem === e.nombre}
+                    key={parseInt(e.id_materia, 10)} 
+                    value = {e.id_materia}
+                    name={e.nombre}
                     onClick={handleItemClick}
                     />)}
                     
@@ -99,8 +96,23 @@ export default function NotasAlumno(){
 
                 <Grid.Column stretched width={12}>
                 <Segment>
-                    This is an stretched grid column. This segment will always match the
-                    tab height
+                <Table celled>
+                    <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Actividad</Table.HeaderCell>
+                        <Table.HeaderCell>Nota</Table.HeaderCell>
+                    </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
+                    {entregaActividad.map( e=>
+                    <Table.Row >
+                        <Table.Cell>{e.titulo}</Table.Cell>
+                        <Table.Cell>{e.puntuacion}</Table.Cell>
+                    </Table.Row>
+                    )}
+                    </Table.Body>
+                </Table>
                 </Segment>
                 </Grid.Column>
             </Grid>

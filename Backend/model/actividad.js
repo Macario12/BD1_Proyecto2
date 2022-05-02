@@ -54,6 +54,16 @@ async function obtenerTodos(callback){
       
   }
 
+  async function obtenerActividadxMateria(publicacion,callback){
+  
+   connection.query('CALL consultarActividadxMateria(?,?);',[publicacion.id,publicacion.idAlumno], function(err,result){
+      if(err) throw err;
+      callback(result[0])
+   });
+      
+  }
+
+
 module.exports = {
-    addActividad,eliminar,obtenerTodos,obtenerxAlumno,obtenerxMaestro,obtenerEntregaxAlumno
+    addActividad,eliminar,obtenerTodos,obtenerxAlumno,obtenerxMaestro,obtenerEntregaxAlumno,obtenerActividadxMateria
 }

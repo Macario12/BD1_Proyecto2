@@ -40,6 +40,13 @@ function eliminar(req, res){
    });
     
 }
+
+function obtenerActividadxMateria(req, res){
+   Actividad.obtenerActividadxMateria(req.body,(result)=>{
+    return res.status(200).send(result)   
+   });
+    
+}
 module.exports = {/*Falta Eliminar */
-    add,eliminar,obtenerTodos,obtenerxAlumno,obtenerxMaestro,obtenerEntregaxAlumno
+    add,eliminar,obtenerTodos,obtenerxAlumno,obtenerxMaestro,obtenerEntregaxAlumno,obtenerActividadxMateria
 }
