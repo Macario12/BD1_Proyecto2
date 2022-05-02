@@ -75,7 +75,7 @@ export default function Actividad () {
                 <Card.Group style={estiloCards}>
                     {publicaciones? 
                             publicaciones.map(e => 
-                                <ActividadCard key={e.id_actividad} show={entregaActividad.find(entrega => entrega.id_actividad === e.id_actividad) != null ? false: true} actividad={e} entregas={entregaActividad}/>)
+                                <ActividadCard key={e.id_actividad} show={true} actividad={e} entregas={entregaActividad}/>)
                         :null} 
                 </Card.Group>  
             </div>

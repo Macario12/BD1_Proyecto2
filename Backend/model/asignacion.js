@@ -12,7 +12,14 @@ async function addAsignacion(asignacion){
       });
       
 }
-
+async function obtenerxAlumno(publicacion,callback){
+  
+  connection.query('CALL consultarAlumnosAsigxMateria(?);',[publicacion.id], function(err,result){
+     if(err) throw err;
+     callback(result[0])
+  });
+     
+ }
 module.exports = {
-    addAsignacion
+    addAsignacion,obtenerxAlumno
 }

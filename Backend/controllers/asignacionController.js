@@ -6,6 +6,13 @@ async function add(req, res){
     return res.status(200).send({asignacion})
 }
 
+function obtenerxAlumno(req, res){
+    Asignacion.obtenerxAlumno(req.body,(result)=>{
+     return res.status(200).send(result)   
+    });
+     
+ }
+
 module.exports = {
-    add
+    add,obtenerxAlumno
 }
