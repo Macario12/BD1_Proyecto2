@@ -14,7 +14,6 @@ export default function CargarAlumnoForm(props) {
     });
 
     const handleInputChange = (e) => {
-        console.log(e.target.value.substring(12, (e.target.value.length+1)), "   ES LA RUTA")
         setDataFile({
             ruta: e.target.value.substring(12, (e.target.value.length+1))
         })
