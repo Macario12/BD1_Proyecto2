@@ -50,7 +50,7 @@ export default function ActividadCard(props) {
           <Card.Header>{props.actividad.titulo}</Card.Header>
           <Card.Description>Entrega: {props.actividad.fechaEntrega}</Card.Description>
           <Card.Description>Materia: {props.actividad.nombre}</Card.Description>
-          <Card.Description>Estado: {props.actividad.Entregado < entrega.estado ? "No Entregado": "Entregado"}</Card.Description>
+          <Card.Description>Estado: {props.actividad.Entregado >= entrega.estado ? "No Entregado": "Entregado"}</Card.Description>
           <Card.Description>Puntuacion: {entrega.puntuacion}</Card.Description>
           <Card.Meta>
           {props.actividad.descripcion}
@@ -63,7 +63,7 @@ export default function ActividadCard(props) {
         {entrega.estado == 0 ? 
           <div className='ui two buttons'> 
             {props.show
-            ?<EntregaActividad/> 
+            ?<EntregaActividad actividad={props.actividad.id_actividad}/> 
             :<Button basic color='red' onClick={deletePublicacion}>
               Eliminar
             </Button>}
