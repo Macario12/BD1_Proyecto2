@@ -31,7 +31,7 @@ export default class AlumnoCRUD extends Component {
 
                 />
 
-        <div className='ui two buttons' style={estiloCargar} >
+                <div className='ui two buttons' style={estiloCargar} >
                     <AddAlumno/>
                     <CargarAlumno/>
                 </div>

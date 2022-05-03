@@ -21,14 +21,14 @@ export default function AlumnoForm(props) {
     });
 
     const [dataEditAlumno, setDataEditAlumno] = useState({
-        id: props.data.id_alumno,
-        carne: props.data.carne,
-        nombre: props.data.nombre,
-        apellido: props.data.apellido,
-        telefono: props.data.telefono,
-        direccion: props.data.direccion,
-        email: props.data.email,
-        contrasenia: props.data.contrasenia
+        id: props.data?props.data.id_alumno:"",
+        carne: props.data?props.data.carne:"",
+        nombre: props.data?props.data.nombre:"",
+        apellido: props.data?props.data.apellido:"",
+        telefono: props.data?props.data.telefono:"",
+        direccion: props.data?props.data.direccion:"",
+        email: props.data?props.data.email:"",
+        contrasenia: props.data?props.data.contrasenia:""
     });
 
     const handleInputChange = (e) => {

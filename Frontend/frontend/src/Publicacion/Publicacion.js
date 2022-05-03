@@ -28,6 +28,7 @@ export default function Publicacion () {
         const [publicaciones, setPublicaciones] = useState([])
 
         useEffect(() => {
+            console.log(initial)
             api.post(urlgetPublicaciones, {body:idUser}).then((res) => {
                 if(!res.err){
                     setPublicaciones(res)

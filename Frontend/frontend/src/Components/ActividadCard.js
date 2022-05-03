@@ -48,15 +48,15 @@ export default function ActividadCard(props) {
         <Card.Content>
           <Icon disabled name='world' style={estilo} />
           <Card.Header>{props.actividad.titulo}</Card.Header>
-          <Card.Description>Entrega: {props.actividad.fechaEntrega}</Card.Description>
-          <Card.Description>Materia: {props.actividad.nombre}</Card.Description>
-          <Card.Description>Estado: {props.actividad.Entregado >= entrega.estado ? "No Entregado": "Entregado"}</Card.Description>
-          <Card.Description>Puntuacion: {entrega.puntuacion}</Card.Description>
+          <Card.Description><strong>Entrega:</strong> {props.actividad.fechaEntrega}</Card.Description>
+          <Card.Description><strong>Materia:</strong> {props.actividad.nombre}</Card.Description>
+          <Card.Description><strong>Estado:</strong> {props.actividad.Entregado >= entrega.estado ? "No Entregado": "Entregado"}</Card.Description>
+          <Card.Description><strong>Puntuacion:</strong> {entrega.puntuacion}</Card.Description>
           <Card.Meta>
           {props.actividad.descripcion}
           </Card.Meta>
           <Card.Meta>
-            Fecha: {props.actividad.fechaPublicacion}
+          <strong>Fecha:</strong> {props.actividad.fechaPublicacion}
           </Card.Meta>
         </Card.Content>
         <Card.Content extra>
